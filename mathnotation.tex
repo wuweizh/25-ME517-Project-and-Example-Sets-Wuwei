@@ -1,0 +1,34 @@
+\section*{Continuum Mechanics Notation} 
+
+The following is a brief primer on my notation in solid mechanics. 
+I'll generally follow the notation of \citet{holzapfelNonlinearSolidMechanics2002}. 
+ 
+In my printed notes we will use lowercase \textit{italic} letters for scalars, \textit{\textbf{bold italic}} letters to denote first-rank tensor (i.e., vector) quantities, \textbf{bold upright} letters to denote second-rank tensor quantities, and blackboard Latin letters (like those used in set notation) for fourth-order tensors. 
+The quantities in this form are denoted irrespective of basis, and are in ``direct'', or symbolic notation. 
+
+\noindent I will use the following fonts to distinguish ranks of tensor in direct notation out of notational convenience:
+\begin{eqnarray*}
+a, b, \alpha, \beta, ... (\textrm{scalars}) & ~~~ \bm{a}, \bm{b}, \bm{A}, \bm{B}, ... (\textrm{vectors})\\
+\mathbf{A}, \mathbf{B}, \mathbf{C}, ...(\textrm{2nd-rank tensors}) & ~~~ \mathbbm{A}, \mathbbm{C}, \mathbbm{I},... (\textrm{4th-rank tensors})
+\end{eqnarray*}
+    
+When we aim to understand relationships in continuum mechanics often it is helpful to approach expressions in a component-by-component manner. 
+In general I'll use index notation for the components of a tensor quantity in a typically-Cartesian basis $\{\bm{e}^{(i)}\}$. 
+In this basis, the components of a second-rank tensor $\bn{A}$ are:
+\begin{equation*}
+    [\bn{A}]^{\bm{e}} = \begin{bmatrix}
+A_{11}^{\bm{e}}  & A_{12}^{\bm{e}}  & A_{13}^{\bm{e}} \\
+A_{21}^{\bm{e}}  & A_{22}^{\bm{e}}  & A_{23}^{\bm{e}} \\
+A_{31}^{\bm{e}}  & A_{32}^{\bm{e}}  & A_{33}^{\bm{e}} 
+\end{bmatrix}.
+\end{equation*}
+
+Alternately, we can express $\bn{A}$ as
+\begin{equation*}
+    \bn{A} = A_{ij}^{\bm{e}} \bm{e}^{(i)} \otimes \bm{e}^{(j)}
+\end{equation*}
+If we're using just one basis, it's common to drop the additional superscript on $A_{ij}^{\bm{e}}$, leaving $A_{ij}$, but it's important to remember that the components $A_{ij}$ depend on the basis we pick.
+It's also rather common to use the notation $\bm{e}_i$ rather than $\bm{e}^{(i)}$, which is equivalent as long as we do not need to change bases using the change-of-basis tensor $\bn{Q}$. 
+If you do want to use $\bm{e}_i$ and $\bm{f}_j$ when changing bases, it's important to remember that $\bm{f}_j$ represents the first of three vectors and not the $j$th component of a single vector $\bm{f}$. 
+
+

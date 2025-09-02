@@ -1,0 +1,104 @@
+
+
+\section*{Examples I. Mathematical Preliminaries (due Sept 17)}
+\label{PS1}
+
+This set of example problems is due on September 17, 2025. 
+I request that you type up your responses in \LaTeX~ rather than write them out by hand. 
+The primary reason is to become better acquainted with writing up mechanics in archival format. 
+If you have diagrams, plots, etc., please add them as attached figures using the \texttt{includegraphics} command. 
+
+\bigskip
+\subsection*{1--1. \textbf{Convolutional integrals} [4 pts].} The response of a 1D viscoelastic material to an applied forcing function is given using a convolutional integral:
+\begin{equation}
+    \varepsilon(t) = \int_0^t J(t-\tau) \frac{d\sigma(\tau)}{d\tau} d\tau,
+\end{equation}
+where $\varepsilon(t)$ is the time-dependent strain response, $\sigma(t)$ is the prescribed stress function, and $J(t)$ is the material compliance, assumed to not depend on the level of stress applied. 
+Say we have a compliance function 
+\begin{equation}
+    J(t) = J_\infty + (J_0-J_\infty)\exp[-t/\tau_c],
+\end{equation}
+where $J_0, J_\infty, \tau_c$ are all constants $\in \mathbbm{R}$. 
+We subject this material to two different loading profiles: (a) step load $\sigma_1(t) = \sigma_0 H(t)$ and (b) a sinusoidal load $\sigma_2(t) = \sigma_0  \sin(\omega t)$, where $\sigma_0$ and $\omega$ are also constant, and $H(t)$ is the step function. 
+
+Determine the corresponding Laplace transforms of the strain functions $\mathcal{L}\{\varepsilon_1(t)\}$ and $\mathcal{L}\{\varepsilon_2(t)\}$. 
+
+\textit{\textbf{Dare mode:}} If you have taken complex analysis, you can compute the inverse transform of polynomial forms because this type of model yields terms with simple poles (i.e. linear in $s$). 
+The formulae for this (see e.g. \cite{rileyMathematicalMethodsPhysics2006} Chs. 24 and 25) are:
+\begin{equation*}
+    \textrm{Residue for simple poles: } R(f(s),s_0) = \lim\limits_{s\rightarrow s_0} \left[ (s-s_0) f(s) \right],
+\end{equation*}
+and you multiply each residue by the shift from zero, i.e.,
+\begin{equation*}
+    f(t) = \mathcal{L}^{-1}\{F(s)\} = \sum \left( \textrm{residues of } F(s)e^{s_0 t} \textrm{ at all poles } s_0 \right)
+\end{equation*}
+\textit{If you dare}, determine the corresponding strain histories $\varepsilon_1(t)$ and $\varepsilon_2(t)$. The first is relatively straightforward; the latter has complex poles and more terms. 
+
+%\newpage
+\bigskip
+\subsection*{1--2. \textbf{Index notation} [4 pts].} Let $\bm{p}, \bm{q}, \bm{r}, \bm{a}, \bm{b}$ be vector fields on $\mathbbm{R}^3$ and $\bn{Q}$ be a change-of-basis tensor on $\mathbbm{R}^3$. Show the following identities to be true using index notation. 
+
+\begin{itemize}
+    \item $\bm{p} \times (\bm{q} \times \bm{r}) = (\bm{r} \cdot \bm{p}) \bm{q} - (\bm{q} \cdot \bm{p}) \bm{r}$
+    \item $(\bm{p} \times \bm{q}) \cdot (\bm{a} \times \bm{b}) = (\bm{p} \cdot \bm{a}) (\bm{q} \cdot \bm{b}) - (\bm{q} \cdot \bm{a})(\bm{p} \cdot \bm{b})$
+    \item $(\bm{a} \otimes \bm{b})(\bm{p} \otimes \bm{q}) = \bm{a}\otimes\bm{q}(\bm{b} \cdot \bm{p}) $
+    \item $\bn{Q}^\intercal\bm{a} \cdot \bn{Q}^\intercal\bm{b} = \bm{a}\cdot\bm{b} $
+\end{itemize}
+
+\subsection*{1--3. \textbf{Tensors and vectors} [4 pts].}
+The second-order projection tensors $\bn{P}_{\bm{n}}^{||}$ and $\bn{P}_{\bm{n}}^{\perp}$ are useful operators that take a vector $\bm{u}$ and map that vector to its part parallel and perpendicular to a vector $\bm{n}$, respectively. 
+
+They are defined via:
+\begin{equation*}
+    \bm{u}_{||} = (\bm{u} \cdot \bm{n}) \otimes \bm{n} = (\bm{n} \otimes \bm{n}) \bm{u} = \bn{P}_{\bm{n}}^{||} \bm{u},
+\end{equation*}
+\begin{equation*}
+    \bm{u}_{\perp} = \bm{u} - \bm{u}_{||} = (\bn{I} - \bm{n} \otimes \bm{n}) \bm{u} = \bn{P}_{\bm{n}}^{\perp} \bm{u}.
+\end{equation*}
+
+The projection tensors have properties
+\begin{align*}
+    \bn{P}_{\bm{n}}^{||} + \bn{P}_{\bm{n}}^{\perp} &= \bn{I} \\
+    \left(\bn{P}_{\bm{n}}^{||} \right)^m &= \bn{P}_{\bm{n}}^{||} ~\forall ~m \in \mathbbm{Z}^+\\
+    \left(\bn{P}_{\bm{n}}^{\perp} \right)^m &= \bn{P}_{\bm{n}}^{\perp} ~\forall ~m \in \mathbbm{Z}^+\\
+    \bn{P}_{\bm{n}}^{||} \bn{P}_{\bm{n}}^{\perp} = \bn{P}_{\bm{n}}^{\perp} \bn{P}_{\bm{n}}^{||}  &= \bn{0}
+\end{align*}
+
+Using the projection tensors, show that $\bm{u} = (\bm{u} \cdot \bm{n}) \bm{n} + \bm{n} \times (\bm{u} \times \bm{n} )$.
+
+\bigskip
+\subsection*{1--4. \textbf{Vector and tensor calculus} [4 pts].} Show the following vector and tensor identities to be true using index notation:
+
+\begin{itemize}
+    \item $\gradX \times (\phi \bm{a}) = \phi \gradX \times \bm{a} + (\gradX\phi) \times \bm{a}$
+    \item $\gradX (\bm{a} \cdot \bm{b}) = (\bm{a} \cdot \gradX) \bm{b} + (\bm{b} \cdot \gradX) \bm{a} + \bm{a} \times (\gradX \times \bm{b}) + \bm{b} \times (\gradX \times \bm{a})$
+    \item $ (\bn{A} \bn{B}) \bn{:} \bn{C} = (\bn{A}^\intercal \bn{C})\bn{:} \bn{B} = (\bn{C} \bn{B}^\intercal)\bn{:} \bn{A}$
+    \item Let $J = \det \bn{F}$. Show\footnote{It will help to use the expression for the determinant of a tensor in index notation!} that $\frac{\partial J}{\partial \bn{F}} = J \bn{F}^{-\intercal}$. 
+    \end{itemize}
+
+%\newpage
+\bigskip
+\subsection*{1--5. \textbf{Kinematics} [8 pts].} The Happy Gelatinous Cube (HGC, pictued) $\mathcal{G}$ exists on a domain of $\{-1\leq X_1 , X_3\leq1, 0\leq X_2 \leq 2\}$ at initial time $t=0$. 
+At all times, the bottom surface of the HGC does not move. 
+Its top surface moves sinusoidally in time at frequency $\omega$ by a maximum magnitude of $\alpha$. 
+At maximum compression, points in the centers of the surfaces defined by outward normals $\bm{e}_1$ and $\bm{e}_3$ experience maximum displacements of magnitude $\beta$. 
+
+\medskip
+(a) Determine the deformation gradient tensor $[\bn{F}(\bm{X})]^{\bm{e}}$ for all $\bm{X}\in \mathcal{G}$. 
+Describe any assumptions you make about the shape of the HGC as it deforms. 
+
+\medskip
+(b) Determine the stretch magnitude of a small fiber positioned at a height $X_2 = 1$ and oriented at an angle $\theta$ from the $\bm{e}_1$ axis. 
+
+\medskip
+(c) Determine the Lagrange-Green strain tensor $\bn{E}$ and the material logarithmic strain tensor $\bn{E}_H = \ln (\bn{U})$ for the geometric center $\bm{X}_c$ of the HGC\footnote{Note that the log of a tensor is defined by writing it spectrally and replacing each eigenvalue with the log of that eigenvalue. For a case of no shear/off-diagonal terms, you can just take the log of each element on the diagonal to get $\ln(\bn{U})$.}. 
+What are the maximum and minimum values of the strain eigenvalues $E_i(t)$ and $E_i^H(t)$? 
+Would you expect one set to be more symmetric about zero as $\alpha$ gets large, and why?
+
+\medskip
+(d) Determine both the material point acceleration $\bm{A}(\bm{X}_1)$ at, and spatial acceleration $\bm{a}(\bm{x}_1)$ of material moving through, a point $\frac{1}{2} \bm{e}_1 + 2\bm{e}_2 + \frac{1}{2} \bm{e}_3$.  
+
+
+
+% This is a placeholder for the example problems from the first problem set. 
+% You'll replace this file with the one I supply on canvas. 

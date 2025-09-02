@@ -1,0 +1,211 @@
+%% 
+%% Copyright 2007-2025 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.3 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\include{preamble}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+%\usepackage{amssymb}
+%% The amsmath package provides various useful equation environments.
+%\usepackage{amsmath}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+\journal{ME517---Mechanics of Soft Materials}
+
+\setlength{\marginparwidth}{2cm}
+\begin{document}
+
+\begin{frontmatter}
+
+\title{MECHENG 517---Mechanics of Soft Materials} %% Article title
+
+%% Replace my name with yours!
+\author{Prof. Jon Estrada} 
+
+
+\affiliation{organization={University of Michigan},%Department and Organization
+            addressline={2350 Hayward St.}, 
+            city={Ann Arbor},
+            postcode={48105}, 
+            state={MI},
+            country={USA}}
+
+%% Abstract
+% \begin{abstract}
+% %% Text of abstract
+% Abstract text.
+% \end{abstract}
+
+%%Graphical abstract
+% %\includegraphics{grabs}
+% \begin{graphicalabstract}
+% \end{graphicalabstract}
+
+%%Research highlights
+% \begin{highlights}
+% \item Research highlight 1
+% \item Research highlight 2
+% \end{highlights}
+
+%% Keywords
+% \begin{keyword}
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+% \end{keyword}
+
+\end{frontmatter}
+
+%% If you want to include line numbers, uncomment the line below this:
+% \linenumbers
+
+\section*{Proposing a Research Topic in the Mechanics of Soft Materials}
+
+As your major deliverable this semester, you are going to develop a ``white paper'' proposal for a research project in the area of soft material mechanics. 
+This is deliberately a bit different from a standard report by focusing on being forward-looking. 
+A white paper is a $3-5$ page document that contains:
+\begin{enumerate}
+    \item A short \textbf{overview} of your topic
+    \item A brief summary of the \textbf{current}, or state-of-the-art of \textbf{knowledge} in that area
+    \item The \textbf{knowledge gap} you are interested in filling
+    \item The \textbf{long-term goal} of what your project would do in the field if successful
+    \item The testable \textbf{central hypothesis} governing the work
+    \item Three \textbf{specific aims} you would pursue with their own working hypotheses
+    \item \textbf{Preliminary data} backing up why you formulated and believe those hypotheses
+    \item The \textbf{expected outcomes} or products of your proposed research that link back to the specific aims  
+\end{enumerate}
+
+This project development will occur over the course of the entire semester, and every assignment you have this semester will have a component that will develop this project proposal in some way. 
+The schedule will be as follows:
+\smallskip
+
+\footnotesize
+\begin{tabularx}{\textwidth}{ccXX}
+
+\textbf{Checkpoint} & \textbf{Due Date} & \textbf{Major Component(s)} & \textbf{White Paper Section(s)} \\
+\hline
+\hline
+P1 & Sept 17 & Topic ID and overview & Overview, long-term goal \\
+\hline
+P2 & Oct 1 & Literature review & Current knowledge and gap \\
+\hline
+P3 & Oct 15 & Data gathering and summary & Preliminary data \\
+\hline
+P4 & Nov 5 & Data analysis and & Central hypothesis \\
+ &  & central hypothesis & Support from preliminary data \\
+\hline
+P5 & Nov 19 & Three specific aims and & Specific aims \\
+ & & supported working hypotheses & Expected outcomes \\
+\hline
+P6 & Dec 8 & Full white paper draft (Peer Review) & All sections \\
+ &  & (and peer review) &  \\
+\hline
+-- & Dec 15--16 & Oral presentations & Final draft \\
+\hline
+\end{tabularx}
+\normalsize
+
+\newpage
+
+
+% Additional notes sections for ME517
+
+\include{mathnotation}
+
+
+% \include{part6}
+% \include{part5}
+% \include{part4}
+% \include{part3}
+% \include{part2}
+\include{part1}
+
+
+%% The appendix will contain the example problems assigned as problem sets. 
+\appendix
+
+%include{PS5}
+%\include{PS4}
+%\include{PS3}
+%\include{PS2}
+\include{PS1}
+
+
+%% For citations use: 
+%%       \citet{<label>} ==> Lamport (1994)
+%%       \citep{<label>} ==> (Lamport, 1994)
+%%
+%Example citation, See \citet{lamport94}.
+
+%% If you have bib database file and want bibtex to generate the
+%% bibitems, please use
+%%
+%%  \bibliographystyle{elsarticle-harv} 
+%%  \bibliography{<your bibdatabase>}
+
+%% else use the following coding to input the bibitems directly in the
+%% TeX file.
+
+%% Refer following link for more details about bibliography and citations.
+%% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+
+%\begin{thebibliography}{00}
+
+%% For authoryear reference style
+%% \bibitem[Author(year)]{label}
+%% Text of bibliographic item
+
+\bibliographystyle{elsarticle-harv} 
+\bibliography{cas-refs}
+
+%\end{thebibliography}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
+
+
