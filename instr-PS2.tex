@@ -1,7 +1,10 @@
 \setcounter{section}{1} % This causes the next section to be Appendix B
 
-\section{Kinetics, Constitutive Laws, and Viscoelasticity I}
+
+\section*{Examples II: Kinetics, Constitutive Laws, and Viscoelasticity I}
 \label{PS2}
+\textcolor{red}{(Rev note: v2)}
+
 
 This set of example problems is due on October 3, 2025. 
 As before, I request that you type up your responses in \LaTeX~ rather than write them out by hand. 
@@ -20,7 +23,7 @@ Using the conservation of mass equation, show that the material must satisfy
 %\rho_{,t} + (\rho v_i)_{,i} = 0,
 %\end{equation}
 \begin{equation*}
-\rho_{,t}+ \rho_{,r} v_r + \frac{\rho}{r} (v_r + r v_{r,r}) = 0,
+\rho_{,t}+ \rho_{,r} v_r + \frac{\textcolor{red}{2}\rho}{r} (v_r + r v_{r,r}) = 0,
 \end{equation*}
 and hence, show that an assumption of incompressibility for PDMS results in 
 \begin{equation*}
@@ -52,29 +55,6 @@ where $\hat{\bm{n}}$ is the outer unit normal to the surface $\partial \Omega_t$
 (b) Under what \textit{two} conditions is $\mathcal{B}$ in static equilibrium?
 
 
-% \subsection*{2--1. \textbf{Balance of momentum} [4 pts].} A Cauchy stress field in a material has a matrix of scalar components in the 3D basis $\{\bn{e}_i\}$:
-% \begin{equation}
-% \bm{\sigma} = \begin{bmatrix}
-% 4x_1 x_3 & 0 & -2 x_3^2 \\
-% 0 & 1 & 2 \\
-% -2 x_3^2 & 2 & 3 x_1^2
-% \end{bmatrix} \textrm{~(MPa)}
-% \end{equation}
-% where the material originally on a domain $\bm{X} \in \Omega_0$ is mapped to a new domain $\bm{x}\in \Omega$ (with units of meters). 
-
-% \medskip
-% (a) For the static case with no applied body force, is this stress field in equilibrium?
-
-% \medskip
-% (b) At a position vector $\bm{x}_1 = 2\bm{e}_1 +  \bm{e}_2 + \bm{e}_3 $, determine the traction, $\bm{t}$, caused by the stress tensor at a cut plane given by the equation $x_1 + x_2 - x_3 = 2$. 
-
-% \medskip
-% (c) Find the magnitudes of the shear and normal traction on this plane at the point $\bm{x}_1$. 
-
-% \medskip
-% (d) Computationally determine the principal stresses and associated directions at the given point. Why, in general, can a principal stress be negative but a principal stretch cannot?
-
-
 \bigskip
 \subsection*{2--3. \textbf{Viscoelastic data} [4 pts].} 
 Stress relaxation isochrones for a compliant viscoelastic material are shown in the figure below.  
@@ -90,7 +70,7 @@ Stress relaxation isochrones for a compliant viscoelastic material are shown in 
 (a) Are these isochrones from a material which we can describe with linear viscoelasticity? If not, why not, and if so, under what approximate regimes would this assumption be valid? 
 
 \medskip
-(b) Estimate the creep relaxation function $J_c$ for stress values of 100 and 250 kPa. Isochrones are shown at times of 2, 5, 10, 20, and 40 seconds.   
+(b) Estimate the creep relaxation function $J_c$ for stress values of 100 and 250 \textcolor{red}{Pa}. Isochrones are shown at times of 2, 5, 10, 20, and 40 seconds.   
 % This is a placeholder for the example problems from the second problem set. 
 % You'll replace this file with the one I supply on canvas. 
 

@@ -1,0 +1,317 @@
+\setcounter{section}{1} 
+\section*{Solutions to Examples I. Mathematical Preliminaries}
+\label{soln-PS1}
+
+1--1. If the strain function is
+\begin{equation*}
+    \varepsilon(t) = \int_0^t J(t-\tau) \frac{d\sigma(\tau)}{d\tau} d\tau,
+\end{equation*}
+then we need to write the Laplace transform as 
+\begin{equation*}
+    \mathcal{L}\{ \varepsilon(t) \} = \mathcal{L} \left\{ \frac{d\sigma(t)}{dt} \right\} \cdot \mathcal{L}\left\{ J(t)\right\}.
+\end{equation*}
+For both cases we'll use the compliance function $J(t) = J_\infty + (J_0-J_\infty)\exp[-t/\tau_c]$ but we'll try two different stress terms, $\sigma_1(t) = \sigma_0 H(t)$ and $\sigma_2(t) = \sigma_0  \sin(\omega t)$. 
+
+Case (a) proceeds as follows:
+\begin{align*}
+    \mathcal{L}\{ \varepsilon_1(t) \} &= \mathcal{L}\left\{ \frac{d}{dt}\left(\sigma_0 \mathcal{H}(t)\right) \right\} \cdot \mathcal{L}\left\{ J(t) \right\}\\
+        &= \mathcal{L}\left\{\sigma_0 \delta(t) \right\} \cdot \mathcal{L}\left\{ J_\infty + (J_0-J_\infty)\exp[-t/\tau_c] \right\}\\
+        &= \sigma_0 \cdot \left[ J_\infty \mathcal{L}\{ 1\} + (J_0 - J_\infty)\mathcal{L}\{\exp[-t/\tau_c] \}\right] \\
+    \mathcal{L}\{ \varepsilon_1(t) \} &= \sigma_0 \left[ \frac{J_\infty}{s} + \frac{J_0 - J_\infty}{s+1/\tau_c} \right] 
+\end{align*}
+
+Case (b) is similar, but requires us to carry out the time-derivative of $\sigma_0 \sin(\omega t)$, which is $\sigma_0 \omega\cos(\omega t)$. 
+This changes the pre-factor to result in:
+\begin{equation*}
+     \mathcal{L}\{ \varepsilon_2(t) \} = \omega \sigma_0 \frac{s}{s^2+\omega^2} \left[ \frac{J_\infty}{s} + \frac{J_0 - J_\infty}{s+1/\tau_c} \right].
+\end{equation*}
+
+Now to complete \textit{dare mode}, we use the following rule about residues of simple (i.e., linear) poles of a function $\bar{f}(s)$ multiplied by $e^{st}$:
+\begin{equation*}
+    \textrm{Residue of a pole of} ~\bar{f}(s) \textrm{: }\lim\limits_{s\rightarrow s_0} \left[(s-s_0) \bar{f}(s) \right]. 
+\end{equation*}
+For taking the inverse Laplace transform of the first strain function $\varepsilon_1(t)=\mathcal{L}^{-1}\{\bar{\varepsilon}_1(s)\}$, we need to find the sum of the residues of of all poles of $\bar{\varepsilon}_1(s)$. 
+The first term of $\bar{\varepsilon}_1(s)$ has a pole at $s_0=0$, leading to $\sigma_0 J_\infty e^{0\cdot t} = \sigma_0 J_\infty$. 
+The second term has a pole at $s_0 = -1/\tau_c$, resulting in a pole residue of $\sigma_0 (J_0 - J_\infty) e^{-t/\tau_0}$. 
+In sum, the first strain relation gives
+\begin{equation*}
+        \varepsilon_1(t) = \sigma_0 \left[J_\infty + (J_0 - J_\infty)e^{-t/\tau_c} \right]. 
+\end{equation*}
+
+The second is slightly more complicated due to the additional complex roots in the two terms. 
+\begin{equation*}
+     \mathcal{L}\{ \varepsilon_2(t) \} = \frac{\omega \sigma_0 J_\infty}{(s+i\omega)(s-i\omega)}  +  \frac{\omega \sigma_0 s (J_0 - J_\infty)}{(s+1/\tau_c)(s+i\omega)(s-i\omega)} \equiv \bar{f}_1(s) + \bar{f}_2(s).
+\end{equation*}
+The inverse Laplace transform is then the sum of the five total residues of the poles, which is calculated as:
+\begin{align*}
+    \varepsilon_2(t) &= \mathcal{R}(\bar{f}_1(i \omega) e^{i \omega t}) + \mathcal{R}(\bar{f}_1(-i \omega) e^{-i \omega t}) + \mathcal{R}(\bar{f}_2(-1/\tau_c) e^{- t/\tau_c}) + \mathcal{R}(\bar{f}_2(i \omega) e^{i \omega t}) + \mathcal{R}(\bar{f}_2(-i \omega) e^{-i \omega t})\\
+    &= \frac{\omega \sigma_0 J_\infty e^{i \omega t}}{2 i \omega} - \frac{\omega \sigma_0 J_\infty e^{-i \omega t}}{2 i \omega}+ \omega \sigma_0 (J_0 - J_\infty) \left[ \frac{(-\frac{1}{\tau_c}) e^{-t/\tau_c}}{\frac{1}{\tau_c^2}+\omega^2}+\frac{i \omega e^{i \omega t}}{(i\omega + \frac{1}{\tau_c})(2 i \omega)} + \frac{-i \omega e^{-i \omega t}}{(-i\omega + \frac{1}{\tau_c})(-2 i \omega)} \right],
+\end{align*}
+which simplifies if you combine the complex exponential terms into sinusoids into a slightly better final form of:
+\begin{equation*}
+    \varepsilon_2(t) = \sigma_0 J_\infty \sin\omega t + \sigma_0(J_0 -J_\infty)\frac{\omega}{\frac{1}{\tau_c^2}+\omega^2} \left[  -\frac{1}{\tau_c} e^{-t/\tau_c}+ \cos\omega t + \omega \sin \omega t \right].  
+\end{equation*}
+
+\subsection*{1--2. \textbf{Index notation} [4 pts].} 
+
+\medskip
+(a) $\bm{p} \times (\bm{q} \times \bm{r}) = (\bm{r} \cdot \bm{p}) \bm{q} - (\bm{q} \cdot \bm{p}) \bm{r}$.
+\begin{align*}
+    \bm{p} \times (\bm{q} \times \bm{r}) \rightarrow& ~~~~\epsilon_{ijk} p_j (\epsilon_{abc} q_b r_c )_k\\
+    & =\epsilon_{kij} \epsilon_{kbc} p_j q_b r_c\\
+    &=(\delta_{ib} \delta_{jc} - \delta_{ic}\delta_{jb} ) p_j q_b r_c\\
+    &=p_i p_c r_c - r_i p_j q_j \rightarrow (\bm{p} \cdot \bm{r})\bm{q} - (\bm{p} \cdot \bm{q}) \bm{r}.//
+\end{align*}
+
+\medskip
+(b) $(\bm{p} \times \bm{q}) \cdot (\bm{a} \times \bm{b}) = (\bm{p} \cdot \bm{a}) (\bm{q} \cdot \bm{b}) - (\bm{q} \cdot \bm{a})(\bm{p} \cdot \bm{b})$
+\begin{align*}
+    (\bm{p} \times \bm{q}) \cdot (\bm{a} \times \bm{b}) \rightarrow & ~~~~\epsilon_{ijk} p_j q_k \epsilon_{imn} a_m b_n\\
+    & =\epsilon_{ijk} \epsilon_{imn} p_j q_k a_m b_n\\
+    &=(\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}) p_j q_k a_m b_n\\
+    &= p_j q_k a_j b_k - p_j q_k a_k b_j\\
+    &= p_j a_j q_k b_k - q_k a_k p_j b_j \rightarrow (\bm{p} \cdot \bm{a}) (\bm{q} \cdot \bm{b}) - (\bm{q} \cdot \bm{a})(\bm{p} \cdot \bm{b}).//
+\end{align*}
+
+\medskip
+(c) $(\bm{a} \otimes \bm{b})(\bm{p} \otimes \bm{q}) = \bm{a}\otimes\bm{q}(\bm{b} \cdot \bm{p}) $
+\begin{align*}
+   (\bm{a} \otimes \bm{b})(\bm{p} \otimes \bm{q}) \rightarrow & ~~~~(a_i b_j \bm{e}_i \otimes \bm{e}_j) \cdot (p_k q_\ell \bm{e}_k \otimes \bm{e}_\ell) \\
+    & = a_i b_j p_k q_\ell (\bm{e}_i \otimes \bm{e}_j) \cdot (\bm{e}_k \otimes \bm{e}_\ell)\\
+    &= a_i b_j p_k q_\ell \delta_{jk} (\bm{e}_i \otimes \bm{e}_{\ell})\\
+    &= a_i q_\ell  b_j p_j (\bm{e}_i \otimes \bm{e}_{\ell}) \rightarrow \bm{a}\otimes\bm{q}(\bm{b} \cdot \bm{p}).//
+\end{align*}
+
+\medskip
+(d) $\bn{Q}^\intercal\bm{a} \cdot \bn{Q}^\intercal\bm{b} = \bm{a}\cdot\bm{b} $
+\begin{align*}
+   \bn{Q}^\intercal\bm{a} \cdot \bn{Q}^\intercal\bm{b} \rightarrow & ~~~~(Q^\intercal_{ij} a_j \bm{e}_i) \cdot (Q^\intercal_{k\ell} b_\ell \bm{e}_k) \\
+    & = Q_{ji} a_j Q_{\ell k} b_\ell \delta_{ik}\\
+    &= Q_{ji} a_j Q_{\ell i} b_\ell\\
+    &= a_j Q_{ji} Q^\intercal_{i\ell} b_\ell ~~~~~\textrm{recall: }\bn{Q} \bn{Q}^\intercal = \bn{I}\\
+    &= a_j \delta_{j\ell} b_\ell\\
+    &= a_j b_j \rightarrow \bm{a} \cdot \bm{b}.//
+\end{align*}
+
+\bigskip
+\subsection*{1--3. \textbf{Tensors and vectors} [4 pts].}
+
+We want to show that $\bm{u} = (\bm{u} \cdot \bm{n}) \bm{n} + \bm{n} \times (\bm{u} \times \bm{n} )$ for a choice of vector $\bm{u}$ and unit vector $\bm{n}$. 
+
+We can start with that $\bm{u} = \bn{I} \bm{u}$, which is written in index notation as $u_i = \delta_{ij} u_j$. 
+From there we can add and subtract $n_i n_j$ to further manipulate the expression, i.e. 
+\begin{equation*}
+    u_i = (\delta_{ij} + n_i n_j - n_i n_j) u_j.
+\end{equation*}
+If the vector $\bm{n}$ is a unit vector, which has to be true for the projection tensor definitions to hold, then we can rearrange the above to
+\begin{equation*}
+    u_i = n_i n_j u_j + (\delta_{ij} - n_i n_j) u_j.
+\end{equation*}
+The first term is $(\bm{u}\cdot\bm{n})\bm{n}$. 
+The second is the one we need to connect with $\bm{n} \times (\bm{u} \times \bm{n}$. 
+Expanding the cross product using the result from the above problem 1--2(a), we have $(\bm{n} \cdot \bm{n})\bm{u} - (\bm{n}\cdot\bm{u})\bm{n}$, or in index notation, $n_j n_j u_i - n_j u_j n_i$. 
+This simplifies to just $u_i - n_j u_j n_i$ from the unit length $n_i n_i =1$, which is indeed identical to the second term we have above. 
+
+\bigskip
+\subsection*{1--4. \textbf{Vector and tensor calculus} [4 pts].}
+
+\medskip
+(a) $\gradX \times (\phi \bm{a}) = \phi \gradX \times \bm{a} + (\gradX\phi) \times \bm{a}$
+\begin{align*}
+    \gradX \times (\phi \bm{a}) \rightarrow & ~~~~ \epsilon_{ijk} \frac{\partial}{\partial X_j} (\phi a_k)\\
+    &= \epsilon_{ijk} ( \phi a_{k,j} + \phi_{,j} a_k) \rightarrow \phi \gradX \times \bm{a} + (\gradX\phi) \times \bm{a}.//
+\end{align*}
+
+\medskip
+(b) $\gradX (\bm{a} \cdot \bm{b}) = (\bm{a} \cdot \gradX) \bm{b} + (\bm{b} \cdot \gradX) \bm{a} + \bm{a} \times (\gradX \times \bm{b}) + \bm{b} \times (\gradX \times \bm{a})$
+It helps to go in with a strategy on indices here. 
+I try, for example, to make every free index an $i$, and use $j$ for all of my first dummy indices. 
+When implementing alternators and Kronecker deltas later, I try to prioritize $i-j-k$ over any other indices. 
+\begin{align*}
+    \gradX (\bm{a} \cdot \bm{b}) \rightarrow & ~~~~\frac{\partial}{\partial X_i}(a_j b_j)\\ 
+    &= a_{j,i} b_j + a_j b_{j,i}.
+\end{align*}
+Now let's manipulate the right side of the equation to see what we can glean from the other terms. 
+The first two are:
+\begin{align*}
+    (\bm{a} \cdot \gradX) \bm{b} + (\bm{b} \cdot \gradX) \bm{a} \rightarrow & ~~~~ a_j b_{i,j} + b_j a_{i,j}.
+\end{align*}
+The latter two are:
+\begin{align*}
+    \bm{a} \times (\gradX \times \bm{b}) + \bm{b} \times (\gradX \times \bm{a}) \rightarrow & ~~~~ \epsilon_{ijk} a_j \epsilon_{kqr} b_{r,q} + \epsilon_{ijk} b_j \epsilon_{kqr} a_{r,q}\\
+    &= \epsilon_{kij} \epsilon_{kqr} a_j b_{r,q} + \epsilon_{kij} \epsilon_{kqr} b_j a_{r,q}\\
+    &= (\delta_{iq} \delta_{jr}- \delta_{ir} \delta_{jq}) (a_j b_{r,q} + b_j a_{r,q})\\
+    &= a_j b_{j,i} + b_j a_{j,i} - a_j b_{i,j} - b_j a_{i,j}.
+\end{align*}
+Note that the negative terms in this set cancel with the first two terms from the RHS, which leaves exactly what we have on the LHS. //
+
+(c) $ (\bn{A} \bn{B}) \bn{:} \bn{C} = (\bn{A}^\intercal \bn{C})\bn{:} \bn{B} = (\bn{C} \bn{B}^\intercal)\bn{:} \bn{A}$.
+
+This is one that's good to do with unit vector directions. 
+\begin{align*}
+     (\bn{A} \bn{B}) \bn{:} \bn{C} &= (A_{ij} B_{jk} \bm{e}_i \otimes \bm{e}_k) : (C_{mn} \bm{e}_m \otimes \bm{e}_n)\\
+     &= A_{ij} B_{jk} \delta_{im} \delta_{kn} C_{mn}\\
+     &= A_{ij} B_{jk} C_{ik} = (A^\intercal_{ji} C_{ik})B_{jk} = (C_{ik} B^\intercal_{kj}) A_{ij}.//
+\end{align*}
+
+(d) $\frac{\partial J}{\partial \bn{F}} = J \bn{F}^{-\intercal}$.
+
+First, let's use the identity:
+\begin{equation}
+\label{eq:J}
+    J = \frac{1}{6} \epsilon_{ijk} \epsilon_{pqr} F_{ip} F_{jq} F_{kr},
+\end{equation}
+where $J = \det \bn{F}$. 
+Now, let's actually execute the derivative of $J$ with respect to $\bn{F}$:
+\begin{equation*}
+    \frac{\partial J}{\partial F_{mn}} = \frac{1}{6} \epsilon_{ijk} \epsilon_{pqr} (\delta_{im} \delta_{pn} F_{jq} F_{kr} + F_{ip} \delta_{jm} \delta_{qn} F_{kr} + F_{ip} F_{jq} \delta_{km} \delta_{rn}). 
+\end{equation*}
+Reindexing and circ-shifting the alternators makes all three of these terms actually the same, so we can write this quantity instead as
+\begin{equation}
+\label{eq:dJdFmn}
+    \frac{\partial J}{\partial F_{mn}} = \frac{1}{2} \epsilon_{mjk} \epsilon_{nqr} F_{jq} F_{kr}.
+\end{equation}
+From here, it seems plausibly useful to try and isolate J on the RHS of the initial equation, which we can achieve by post-multiplying by $\bn{F}^\intercal$:
+\begin{equation*}
+    \frac{\partial J}{\partial \bn{F}} \bn{F}^\intercal = J \bn{F}^{-\intercal} \bn{F}^\intercal = J\bn{I}
+\end{equation*}
+From here, it's useful to write this in index notation:
+\begin{equation*}
+\frac{\partial J}{\partial F_{mn}} F^\intercal_{nk} = J \delta_{mk}
+\end{equation*}
+For our next trick, we can take the trace of this expression to get something that's a scalar like in our original identity expression:
+\begin{equation}
+\label{eq:dJdFmnFt}
+    \frac{\partial J}{\partial F_{mn}} F^\intercal_{nm} = \frac{\partial J}{\partial F_{mn}} F_{mn} = J \delta_{kk} = 3J.
+\end{equation}
+We can combine equations \ref{eq:dJdFmn} and \ref{eq:dJdFmnFt} by post-multiplying the former by $\bn{F}^\intercal$:
+\begin{equation*}
+    \frac{\partial J}{\partial F_{mn}} F_{mn} = \frac{1}{2} \epsilon_{mjk} \epsilon_{nqr} F_{jq} F_{kr} F_{mn},
+\end{equation*}
+which does indeed equal $3J$ via equation \ref{eq:J}. //
+
+\bigskip
+\subsection*{1--5. \textbf{Kinematics} [8 pts].}
+
+(a) Determine the deformation gradient tensor $[\bn{F}(\bm{X})]^{\bm{e}}$ for all $\bm{X}\in \mathcal{G}$. 
+Describe any assumptions you make about the shape of the HGC as it deforms. 
+
+The Happy Gelatinous Cube (HGC) seems to have sides that bend in an approximately quadratic way, while the top plane simply moves in an oscillatory fashion (and the bottom plane stays put). 
+When getting a deformation field, it's often a good idea to start with either the mapping function or the displacement to ground your intuition. 
+I'll proceed here with displacements. 
+
+The clearest displacement component is the $u_2$ component, which most straightforwardly is a linear function that goes from zero at the bottom surface to $\alpha sin(\omega t)$ at the top surface. 
+This can be written as
+\begin{equation*}
+    u_2(\bm{X}) =  X_2 \frac{\alpha}{2} \sin\omega t 
+\end{equation*}
+Note that the vertical displacement does not change as a function of $X_1$ or $X_3$, because all flat square sections remain flat during all deformations.
+Analyzing points at the mid-plane wall helps us determine the displacements in the other two Cartesian directions. 
+These must also be zero at the top and bottom surfaces, suggesting a quadratic function that is maximal at the middle. 
+Lastly, the transverse displacements can reasonably be assumed to be zero at the middle and linearly increase to the outside. 
+In all, the displacement components $u_1$ and $u_3$ are:
+\begin{align*}
+    u_1(\bm{X}) &= -X_1 X_2 (2-X_2)\beta \sin\omega t\\
+    u_3(\bm{X}) &= -X_3 X_2 (2-X_2)\beta \sin\omega t,
+\end{align*}
+where the negative sign in front corresponds to the cube contracting in its middle when extended at the top.
+
+The deformation gradient tensor $\bn{F} = \bn{I} + \gradX \bm{u}$ is then given in component form as:
+
+\begin{equation*}
+\bn{F} = \begin{bmatrix}
+ 1 - X_2 (2-X_2)\beta \sin\omega t & -X_1 (2-2X_2) \beta \sin\omega t & 0 \\
+ 0 & 1 + \frac{\alpha}{2} \sin\omega t & 0 \\
+ 0 & -X_3 (2-2X_2) \beta \sin\omega t & 1- X_2 (2-X_2)\beta \sin\omega t
+ \end{bmatrix}. 
+\end{equation*}
+
+(b) Determine the stretch magnitude of a small fiber positioned at a height $X_2 = 1$ and oriented at an angle $\theta$ from the $\bm{e}_1$ axis (in either the $\bm{e}_1- \bm{e}_2$ or $\bm{e}_1- \bm{e}_3$ plane).
+
+At the midplane, we have a small fiber pointed in, say, the $\hat{\bm{n}} = \cos\theta \bm{e}_1 + \sin\theta\bm{e}_3$ direction. 
+
+The stretch of this fiber comes from $\lambda(\hat{\bm{n}}) = \sqrt{\hat{\bm{n}}\cdot \bn{C} \hat{\bm{n}}} = \sqrt{\bn{F} \hat{\bm{n}} \cdot \bn{F} \hat{\bm{n}}}$. 
+Note that at the midplane, the shear terms of $\bn{F}$ end up being zero due to the $(2-2X_2)$ term, leaving the diagonal stretch terms of $\{1-\beta \sin \omega t$, $1 + \frac{\alpha}{2} \sin \omega t$, and $1-\beta \sin \omega t\}$ to be post-multiplied by $\hat{\bm{n}}$. 
+This post-multiplication yields vectors of $\bn{F} \hat{\bm{n}} = 1-\beta \sin \omega t\{\cos \theta, 0, \sin\theta\}$, which then result in a total stretch of the prefactor $\lambda(\hat{\bm{n}}, X_2=1) = 1-\beta \sin \omega t$.
+
+(c) Determine the Lagrange-Green strain tensor $\bn{E}$ and the material logarithmic strain tensor $\bn{E}_H = \ln (\bn{U})$ for the geometric center $\bm{X}_c$ of the HGC. What are the maximum and minimum values of the strain eigenvalues $E_i(t)$ and $E_i^H(t)$? 
+Would you expect one set to be more symmetric about zero as $\alpha$ gets large, and why?
+
+The deformation gradient tensor $\bn{F}$ at the center of the HGC is:
+\begin{equation*}
+\bn{F} = \begin{bmatrix}
+ 1 - \beta \sin\omega t & 0 & 0 \\
+ 0 & 1 + \frac{\alpha}{2} \sin\omega t & 0 \\
+ 0 & 0 & 1- \beta \sin\omega t
+ \end{bmatrix}. 
+\end{equation*}
+
+Thus, the logarithmic strain is just the log of each of the entries of this diagonal tensor, i.e.,
+\begin{equation*}
+\bn{E}_H = \begin{bmatrix}
+ \ln(1 - \beta \sin\omega t) & 0 & 0 \\
+ 0 & \ln(1 + \frac{\alpha}{2} \sin\omega t) & 0 \\
+ 0 & 0 & \ln(1- \beta \sin\omega t)
+ \end{bmatrix}, 
+\end{equation*}
+with eigenvalues that oscillate between $\{\ln(1 + \frac{\alpha}{2}), \ln(1 - \beta), \ln(1 - \beta)\}$ and $\{\ln(1 - \frac{\alpha}{2}), \ln(1 + \beta), \ln(1 + \beta)\}$. 
+
+The Lagrange-Green strain is given as $\bn{E} = \frac{1}{2}(\bn{F}^\intercal \bn{F} - \bn{I})$, which yields:
+\begin{equation*}
+\bn{E} = \frac{1}{2}\begin{bmatrix}
+ (1 - \beta \sin\omega t)^2-1 & 0 & 0 \\
+ 0 & (1 + \frac{\alpha}{2} \sin\omega t)^2-1 & 0 \\
+ 0 & 0 & (1- \beta \sin\omega t)^2-1
+ \end{bmatrix}. 
+\end{equation*}
+The extreme eigenvalues of $\bn{E}$ alternate between $\{-\beta+\frac{1}{2}\beta^2, \frac{\alpha}{2} + \frac{\alpha^2}{8}, -\beta+\frac{1}{2}\beta^2 \}$ and $\{\beta+\frac{1}{2}\beta^2, -\frac{\alpha}{2} + \frac{\alpha^2}{8}, \beta+\frac{1}{2}\beta^2 \}$. 
+
+If we take $\alpha$ to be $4 \beta$, which approximates incompressible behavior, and make $\beta$ somewhat large, say, $0.4$---the values are, e.g. $\bn{E}_{Hi} = \{-.51, .59, -.51 \}$ and $ \{.34,-1.6, .34\}$. 
+Compare that to $\bn{E}_i = \{-.32, 1.12, -.32 \}$ and $ \{.48,-.48, .48\}$.
+The result suggests that the extrema are differently exaggerated depending on the strain metric, which makes sense---the domain of Lagrange-Green strain is $(-\frac{1}{2}, \infty)$, whereas that of the logarithmic strain is $(-\infty, \infty)$. 
+
+d) Determine the material point acceleration $\bm{A}(\bm{X}_1)$ at a point $\frac{1}{2} \bm{e}_1 + 2\bm{e}_2 + \frac{1}{2} \bm{e}_3$.  
+
+For this, we use the displacement 
+\begin{equation*}
+    \bm{u} =  -X_1 X_2 (2-X_2)\beta \sin\omega t \bm{e}_1 + \frac{\alpha}{2} X_2 \sin\omega t \bm{e}_2  -X_3 X_2 (2-X_2)\beta \sin\omega t \bm{e}_3,
+\end{equation*}
+and take two time derivatives: 
+\begin{equation*}
+    \bm{A} =  \omega^2 X_1 X_2 (2-X_2)\beta \sin\omega t \bm{e}_1 - \omega^2 X_2 \frac{\alpha}{2} \sin\omega t \bm{e}_2 +\omega^2 X_3 X_2 (2-X_2)\beta \sin\omega t \bm{e}_3.
+\end{equation*}
+Now we just plug in values of $\bm{X_1}$ corresponding to the point $\bm{X_1} = \frac{1}{2} \bm{e}_1 + 2\bm{e}_2 + \frac{1}{2} \bm{e}_3$. As expected, the horizontal displacement is zero on the top due to the boundary condition, so the total Lagrangian acceleration at that point is: 
+\begin{equation*}
+    \bm{A}(\bm{X_1}) =   - 2 \omega^2 \frac{\alpha}{2} \sin\omega t \bm{e}_2.// 
+\end{equation*}
+
+
+% %\newpage
+% \bigskip
+% \subsection*{1--5. \textbf{Kinematics} [8 pts].} The Happy Gelatinous Cube (HGC, pictued) $\mathcal{G}$ exists on a domain of $\{-1\leq X_1 , X_3\leq1, 0\leq X_2 \leq 2\}$ at initial time $t=0$. 
+% At all times, the bottom surface of the HGC does not move. 
+% Its top surface moves sinusoidally in time at frequency $\omega$ by a maximum magnitude of $\alpha$. 
+% At maximum compression, points in the centers of the surfaces defined by outward normals $\bm{e}_1$ and $\bm{e}_3$ experience maximum displacements of magnitude $\beta$. 
+
+% \medskip
+% (a) Determine the deformation gradient tensor $[\bn{F}(\bm{X})]^{\bm{e}}$ for all $\bm{X}\in \mathcal{G}$. 
+% Describe any assumptions you make about the shape of the HGC as it deforms. 
+
+% \medskip
+% (b) Determine the stretch magnitude of a small fiber positioned at a height $X_2 = 1$ and oriented at an angle $\theta$ from the $\bm{e}_1$ axis \textcolor{red}{(in either the $\bm{e}_1- \bm{e}_2$ or $\bm{e}_1- \bm{e}_3$ plane)}. 
+
+% \medskip
+% (c) Determine the Lagrange-Green strain tensor $\bn{E}$ and the material logarithmic strain tensor $\bn{E}_H = \ln (\bn{U})$ for the geometric center $\bm{X}_c$ of the HGC\footnote{Note that the log of a tensor is defined by writing it spectrally and replacing each eigenvalue with the log of that eigenvalue. For a case of no shear/off-diagonal terms, you can just take the log of each element on the diagonal to get $\ln(\bn{U})$.}. 
+% What are the maximum and minimum values of the strain eigenvalues $E_i(t)$ and $E_i^H(t)$? 
+% Would you expect one set to be more symmetric about zero as $\alpha$ gets large, and why?
+
+% \medskip
+% (d) Determine both the material point acceleration $\bm{A}(\bm{X}_1)$ at \textcolor{red}{\sout{, and spatial acceleration $\bm{a}(\bm{x}_1)$ of material moving through,}} a point $\frac{1}{2} \bm{e}_1 + 2\bm{e}_2 + \frac{1}{2} \bm{e}_3$.  
+
+% \begin{figure}
+% \centering
+% \animategraphics[loop,autoplay,width=4in]{10}{instr-figures/The_Happy_Gelatinous_Cube-}{1}{10}
+% \end{figure}
+
+% This is a placeholder for the example problems from the first problem set. 
+% You'll replace this file with the one I supply on canvas. 
