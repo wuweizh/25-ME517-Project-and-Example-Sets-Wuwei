@@ -36,6 +36,36 @@ and you multiply each residue by the shift from zero, i.e.,
 
 %\newpage
 \bigskip
+\textbf{Answer:}
+Given
+\begin{equation}
+  \varepsilon(t)=\int_0^t J(t-\tau)\,\frac{d\sigma(\tau)}{d\tau}\,d\tau,
+  \qquad
+  J(t)=J_\infty+(J_0-J_\infty)e^{-t/\tau_c},
+\end{equation}
+its Laplace transform (with $\sigma(0^-)=0$ and using $\mathcal{L}\{f*g\}=F(s)G(s)$,
+$\mathcal{L}\{\dot{\sigma}\}=s\varepsilon(s)$) is
+\begin{equation}
+  E(s)=\mathcal{L}\{\varepsilon(t)\}=J(s)\,s\,\varepsilon(s),
+  \qquad
+  J(s)=\frac{J_\infty}{s}+\frac{J_0-J_\infty}{\,s+1/\tau_c\,}.
+\end{equation}
+
+\paragraph{(a) Step load}
+For $\sigma_1(t)=\sigma_0 H(t)$, we have $\varepsilon_1(s)=\sigma_0/s$, hence
+\begin{equation}
+  \,E_1(s)=\sigma_0\,J(s)=\sigma_0\!\left(\frac{J_\infty}{s}+\frac{J_0-J_\infty}{\,s+1/\tau_c\,}\right).\,
+\end{equation}
+
+\paragraph{(b) Sinusoid}
+For $\sigma_2(t)=\sigma_0\sin(\omega t)$, we have $\varepsilon_2(s)=\dfrac{\sigma_0\omega}{s^2+\omega^2}$, hence
+\begin{equation}
+  \,E_2(s)=J(s)\,s\,\Sigma_2(s)
+  =\sigma_0\omega\left[\frac{J_\infty}{s^2+\omega^2}
+  +\frac{(J_0-J_\infty)\,s}{(s+1/\tau_c)(s^2+\omega^2)}\right].\,
+\end{equation}
+
+\bigskip
 \subsection*{1--2. \textbf{Index notation} [4 pts].} Let $\bm{p}, \bm{q}, \bm{r}, \bm{a}, \bm{b}$ be vector fields on $\mathbbm{R}^3$ and $\bn{Q}$ be a change-of-basis tensor on $\mathbbm{R}^3$. Show the following identities to be true using index notation. 
 
 \begin{itemize}
@@ -44,6 +74,48 @@ and you multiply each residue by the shift from zero, i.e.,
     \item $(\bm{a} \otimes \bm{b})(\bm{p} \otimes \bm{q}) = \bm{a}\otimes\bm{q}(\bm{b} \cdot \bm{p}) $
     \item $\bn{Q}^\intercal\bm{a} \cdot \bn{Q}^\intercal\bm{b} = \bm{a}\cdot\bm{b} $
 \end{itemize}
+
+\bigskip 
+\textbf{Answer:}
+Use $(\bm{a}\times\bm{b})_i=\varepsilon_{ijk}a_j b_k$ and the identity 
+$\varepsilon_{ijk}\varepsilon_{imn}=\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}$.
+
+\paragraph{(i)}
+\begin{align*}
+\big[\bm{p}\times(\bm{q}\times\bm{r})\big]_i 
+&= \varepsilon_{ijk}p_j(\varepsilon_{klm}q_l r_m) \\
+&= (\delta_{i\ell}\delta_{jm}-\delta_{im}\delta_{j\ell})\,p_j q_\ell r_m \\
+&= (p_j r_j)q_i-(p_j q_j)r_i \\
+&=((\bm{r}\cdot\bm{p})\,q_i - (\bm{q}\cdot\bm{p})\,r_i).
+\end{align*}
+
+\paragraph{(ii)}
+\begin{align*}
+(\bm{p}\times\bm{q})\cdot(\bm{a}\times\bm{b})
+&=\varepsilon_{ijk}p_j q_k\,\varepsilon_{ilm}a_l b_m \\
+&=(\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl})\,p_j q_k a_l b_m \\
+&=p_j a_j q_k b_k-p_j b_j q_k a_k\\
+&=(\bm{p}\cdot\bm{a})(\bm{q}\cdot\bm{b})-(\bm{p}\cdot\bm{b})(\bm{q}\cdot\bm{a}).
+\end{align*}
+
+\paragraph{(iii)}
+\begin{align*}
+\big[(\bm{a}\otimes\bm{b})(\bm{p}\otimes\bm{q})\big]_{ij}
+&=(a_i b_k)(p_k q_j) \\
+&=a_i q_j\,(b_k p_k) \\
+&=\big(\bm{b}\cdot\bm{p}\big)\,(\bm{a}\otimes\bm{q})_{ij}.
+\end{align*}
+
+\paragraph{(iv)}
+\begin{align*}
+(\bn{Q}^\top\bm{a})\cdot(\bn{Q}^\top\bm{b})
+&=(Q_{ki}a_i)(Q_{kj}b_j) \\
+&=(Q_{ki}Q_{kj})\,a_i b_j \\
+&=\delta_{ij}a_i b_j \\
+&=\bm{a}\cdot\bm{b},
+\end{align*}
+where $\bn{Q}$ is an orthogonal change-of-basis tensor ($Q_{ki}Q_{kj}=\delta_{ij}$).
+\bigskip
 
 \subsection*{1--3. \textbf{Tensors and vectors} [4 pts].}
 The second-order projection tensors $\bn{P}_{\bm{n}}^{||}$ and $\bn{P}_{\bm{n}}^{\perp}$ are useful operators that take a vector $\bm{u}$ and map that vector to its part parallel and perpendicular to a vector $\bm{n}$, respectively. 
@@ -65,6 +137,15 @@ The projection tensors have properties
 \end{align*}
 
 Using the projection tensors, show that $\bm{u} = (\bm{u} \cdot \bm{n}) \bm{n} + \bm{n} \times (\bm{u} \times \bm{n} )$.
+\bigskip
+\textbf{Answers:}
+Using the vector triple–product identity
+$\bm{n}\times(\bm{u}\times\bm{n})=\bm{u}(\bm{n}\cdot\bm{n})-\bm{n}(\bm{u}\cdot\bm{n})$,
+and assuming $\|\bm{n}\|=1$, we obtain
+$\bm{n}\times(\bm{u}\times\bm{n})=\bm{u}-(\bm{u}\cdot\bm{n})\bm{n}$.
+Hence,
+$\bm{u}=(\bm{u}\cdot\bm{n})\,\bm{n}+\bm{n}\times(\bm{u}\times\bm{n})$
+as required.
 
 \bigskip
 \subsection*{1--4. \textbf{Vector and tensor calculus} [4 pts].} Show the following vector and tensor identities to be true using index notation:
@@ -77,6 +158,134 @@ Using the projection tensors, show that $\bm{u} = (\bm{u} \cdot \bm{n}) \bm{n} +
     \end{itemize}
 
 %\newpage
+\bigskip
+\textbf{Answer:}
+\paragraph{(i)}
+\begin{align*}
+\big[\nabla \times (\phi \bm{a})\big]_i
+&= \varepsilon_{ijk}\,\partial_j(\phi a_k) \\
+&= \varepsilon_{ijk}\,\big((\partial_j \phi)a_k + \phi\,\partial_j a_k\big) \\
+&= \big[(\nabla \phi)\times \bm{a}\big]_i + \big[\phi\,(\nabla \times \bm{a})\big]_i,
+\end{align*}
+so
+$\nabla \times (\phi \bm{a}) = \phi (\nabla \times \bm{a}) + (\nabla \phi)\times \bm{a}$.
+
+\paragraph{(ii)}
+\begin{align*}
+\partial_i(\bm{a}\cdot\bm{b})
+&=\partial_i(a_m b_m)=(\partial_i a_m)b_m+a_m(\partial_i b_m).
+\end{align*}
+Use the triple–product expansion in index form
+$\big[\bm{a}\times(\nabla\times\bm{b})\big]_i
+=\varepsilon_{ijk}a_j\,\varepsilon_{k\ell m}\,\partial_\ell b_m
+=(\delta_{i\ell}\delta_{jm}-\delta_{im}\delta_{j\ell})\,a_j\partial_\ell b_m
+= a_m\,\partial_i b_m-(\bm{a}\cdot\nabla)b_i$,
+and similarly
+$\big[\bm{b}\times(\nabla\times\bm{a})\big]_i
+= b_m\,\partial_i a_m-(\bm{b}\cdot\nabla)a_i$.
+
+Adding these two gives
+$\big[\bm{a}\times(\nabla\times\bm{b})\big]_i
++\big[\bm{b}\times(\nabla\times\bm{a})\big]_i
+= \partial_i(a_m b_m)-(\bm{a}\cdot\nabla)b_i-(\bm{b}\cdot\nabla)a_i$.
+Rearranging,
+$\nabla(\bm{a}\cdot\bm{b})
+=(\bm{a}\cdot\nabla)\bm{b}+(\bm{b}\cdot\nabla)\bm{a}
++\bm{a}\times(\nabla\times\bm{b})+\bm{b}\times(\nabla\times\bm{a})$
+
+\paragraph{(iii)}
+\begin{align*}
+(\bm{A}\bm{B}):\bm{C} &= A_{ik}B_{kj}C_{ij}, \\
+(\bm{A}^\top \bm{C}):\bm{B} &= (A^\top)_{ki}C_{ij}B_{kj} = A_{ik}C_{ij}B_{kj}, \\
+(\bm{C}\bm{B}^\top):\bm{A} &= C_{ij}(B^\top)_{jk}A_{ik} = C_{ij}B_{kj}A_{ik}.
+\end{align*}
+All are the same scalar, so
+$(\bm{A}\bm{B}):\bm{C}=(\bm{A}^\top \bm{C}):\bm{B}=(\bm{C}\bm{B}^\top):\bm{A}$.
+
+\paragraph{(iv)}
+By definition,
+$$
+J \;=\; \frac{1}{6}\,\varepsilon_{ijk}\,\varepsilon_{pqr}\,F_{ip}\,F_{jq}\,F_{kr}.
+$$
+
+Differentiate $J$ with respect to $F_{ab}$. By the product rule, there are three identical terms (because the expression is symmetric in the three $F$'s), hence:
+$$
+\frac{\partial J}{\partial F_{ab}}
+\;=\;
+\frac{1}{6}\,\varepsilon_{ijk}\,\varepsilon_{pqr}\,
+\Big(\delta_{ia}\delta_{pb}\,F_{jq}F_{kr}
+\;+\;
+F_{ip}\,\delta_{ja}\delta_{qb}\,F_{kr}
+\;+\;
+F_{ip}\,F_{jq}\,\delta_{ka}\delta_{rb}\Big).
+$$
+
+Relabel dummy indices in the second and third terms to match the first-term pattern and combine them to obtain:
+$$
+\frac{\partial J}{\partial F_{ab}}
+\;=\;
+\frac{1}{2}\,\varepsilon_{a j k}\,\varepsilon_{b q r}\,F_{jq}\,F_{kr}.
+$$
+
+Define the cofactor matrix $\operatorname{cof}\bm{F}$ with entries
+$$
+(\operatorname{cof}\bm{F})_{ba}
+\;:=\;
+\frac{1}{2}\,\varepsilon_{a j k}\,\varepsilon_{b q r}\,F_{jq}\,F_{kr}.
+$$
+
+Thus,
+$$
+\frac{\partial J}{\partial F_{ab}}
+\;=\;
+(\operatorname{cof}\bm{F})_{ba}.
+$$
+
+Next, show that this cofactor matrix satisfies the adjugate identity. Compute:
+$$
+F_{ia}\,(\operatorname{cof}\bm{F})_{ba}
+\;=\;
+F_{ia}\left(\frac{1}{2}\,\varepsilon_{a j k}\,\varepsilon_{b q r}\,F_{jq}\,F_{kr}\right)
+\;=\;
+\frac{1}{2}\,\varepsilon_{a j k}\,F_{ia}\,\varepsilon_{b q r}\,F_{jq}\,F_{kr}.
+$$
+
+Using the identity
+$$
+\varepsilon_{a j k}\,F_{ia}\,F_{jq}\,F_{kr}
+\;=\;
+\varepsilon_{i q r}\,\det\bm{F}
+\;=\;
+\varepsilon_{i q r}\,J,
+$$
+we get
+$$
+F_{ia}\,(\operatorname{cof}\bm{F})_{ba}
+\;=\;
+\frac{1}{2}\,\varepsilon_{b q r}\,\big(\varepsilon_{i q r}\,J\big)
+\;=\;
+J\,\frac{1}{2}\,\varepsilon_{b q r}\,\varepsilon_{i q r}
+\;=\;
+J\,\delta_{bi}.
+$$
+
+Therefore,
+$$
+\bm{F}\,(\operatorname{cof}\bm{F})^\top \;=\; J\,\bm{I}
+\qquad\Longrightarrow\qquad
+(\operatorname{cof}\bm{F})^\top \;=\; J\,\bm{F}^{-1}.
+$$
+
+Taking transposes,
+$$
+\operatorname{cof}\bm{F} \;=\; J\,\bm{F}^{-\top}.
+$$
+
+Since $(\dfrac{\partial J}{\partial F_{ab}}=(\operatorname{cof}\bm{F})_{ba})$, we conclude
+$$
+\frac{\partial J}{\partial \bm{F}} \;=\; J\,\bm{F}^{-\top}
+$$
+
 \bigskip
 \subsection*{1--5. \textbf{Kinematics} [8 pts].} The Happy Gelatinous Cube (HGC, pictued) $\mathcal{G}$ exists on a domain of $\{-1\leq X_1 , X_3\leq1, 0\leq X_2 \leq 2\}$ at initial time $t=0$. 
 At all times, the bottom surface of the HGC does not move. 
@@ -102,6 +311,110 @@ Would you expect one set to be more symmetric about zero as $\alpha$ gets large,
 \centering
 \animategraphics[loop,autoplay,width=4in]{10}{instr-figures/The_Happy_Gelatinous_Cube-}{1}{10}
 \end{figure}
+\textbf{Answer:}
+We assume the following time-harmonic field, quadratic through thickness $X_2$, since the size of the top and bottom surfaces remains:
+$$
+x_1(\bm{X},t)=X_1-\beta\,X_2\,(2-X_2)\,X_1\,\sin(\omega t),\qquad
+x_2(\bm{X},t)=X_2-\alpha\,\frac{X_2}{2}\,\sin(\omega t),\qquad
+x_3(\bm{X},t)=X_3-\beta\,X_2\,(2-X_2)\,X_3\,\sin(\omega t).
+$$
 
+\bigskip
+\paragraph{(a)}
+\begin{equation*}
+    [\bm{F}(\bm{X})]^{\bm{e}}=\partial\bm{x}/\partial\bm{X}
+\end{equation*}
+\medskip
+Compute spatial derivatives (let $s=\sin(\omega t)$):
+$$
+\frac{\partial x_1}{\partial X_1} = 1-\beta X_2 (1-X_2) s, \qquad
+\frac{\partial x_1}{\partial X_2} = 2\beta X_1 (X_2-1) s, \qquad
+\frac{\partial x_1}{\partial X_3} = 0,
+$$
+$$
+\frac{\partial x_2}{\partial X_1} = 0, \qquad
+\frac{\partial x_2}{\partial X_2} = 1+\tfrac{\alpha}{2}s, \qquad
+\frac{\partial x_2}{\partial X_3} = 0,
+$$
+$$
+\frac{\partial x_3}{\partial X_1} = 0, \qquad
+\frac{\partial x_3}{\partial X_2} = 2\beta X_3 (X_2-1) s, \qquad
+\frac{\partial x_3}{\partial X_3} = 1-\beta X_2 (1-X_2) s.
+$$
+Therefore
+$$
+\bm{F}(\bm{X},t)=
+\begin{bmatrix}
+1-\beta X_2 (1-X_2) s & 2\beta X_1 (X_2-1) s & 0 \\
+0 & 1+\dfrac{\alpha}{2}s & 0 \\
+0 & 2\beta X_3 (X_2-1) s & 1-\beta X_2 (1-X_2) s
+\end{bmatrix}.
+$$
+
+\bigskip
+\paragraph{(b)}
+We evaluate on the mid-height centerline to eliminate shear (set $X_2=1$, $X_1=0$, $X_3=0$). Then
+$$
+\bm{F}_c(t)=\mathrm{diag}\!\Big(1-\beta s,\; 1+\tfrac{\alpha}{2}s,\; 1-\beta s\Big),
+\qquad
+\bm{C}_c(t)=\bm{F}_c^\top\bm{F}_c=\mathrm{diag}\!\Big((1-\beta s)^2,\; (1+\tfrac{\alpha}{2}s)^2,\; (1-\beta s)^2\Big).
+$$
+
+For a unit material fiber $\bm{a}_0$ the stretch is $\lambda=\sqrt{\bm{a}_0\cdot\bm{C}_c\,\bm{a}_0}$.
+
+\medskip
+In the $\bm{e}_1$--$\bm{e}_3$ plane, take
+$$
+\bm{a}_0=\cos\theta\,\bm{e}_1+\sin\theta\,\bm{e}_3.
+$$
+Then
+$$
+\lambda^2(\theta,t)=(1-\beta s)^2\cos^2\theta+(1-\beta s)^2\sin^2\theta=(1-\beta s)^2.
+$$
+
+\bigskip
+\paragraph{(c)}
+At $\bm{X}_c$, we have the diagonal $\bm{F}_c$ above, hence
+$$
+\bm{C}_c=\mathrm{diag}\!\Big((1-\beta s)^2,\; (1-\tfrac{\alpha}{2}s)^2,\; (1-\beta s)^2\Big).
+$$
+The Lagrange–Green strain is
+$$
+\bm{E}=\tfrac{1}{2}(\bm{C}-\bm{I})
+=\tfrac{1}{2}\,\mathrm{diag}\!\Big((1-\beta s)^2-1,\; (1-\tfrac{\alpha}{2}s)^2-1,\; (1-\beta s)^2-1\Big).
+$$
+The right stretch tensor is
+$$
+\bm{U}=\sqrt{\bm{C}}=\mathrm{diag}\!\Big(1-\beta s,\; 1-\tfrac{\alpha}{2}s,\; 1-\beta s\Big)
+\;\; \text{(assuming amplitudes keep entries positive)}.
+$$
+Therefore the material logarithmic strain is
+$$
+\bm{E}_H=\ln\bm{U}
+=\mathrm{diag}\!\Big(\ln(1-\beta s),\; \ln(1-\tfrac{\alpha}{2}s),\; \ln(1-\beta s)\Big).
+$$
+
+The strain eigenvalues are the diagonal entries. Maxima/minima occur at $s=\pm 1$:
+$$
+E_1(t)=E_3(t)=\tfrac{1}{2}\big((1-\beta s)^2-1\big),\qquad
+E_2(t)=\tfrac{1}{2}\big((1-\tfrac{\alpha}{2}s)^2-1\big),
+$$
+$$
+E_1^H(t)=E_3^H(t)=\ln(1-\beta s),\qquad
+E_2^H(t)=\ln\!\big(1-\tfrac{\alpha}{2}s\big).
+$$
+
+\emph{Symmetry comment:} the set $\{E_i^H\}$ is more symmetric about zero because $\ln\lambda=-\ln(\lambda^{-1})$, whereas $E_i=\tfrac{1}{2}(\lambda_i^2-1)$ grows asymmetrically with large compression/tension. As $\alpha$ increases, this asymmetry in $\{E_i\}$ becomes more pronounced than in $\{E_i^H\}$.
+
+\bigskip
+\paragraph{(d)}
+Evaluate the material acceleration, the second time derivative of point $\bm{x}(\bm{X}_1,t)=(\tfrac{1}{2},\;2+\alpha s,\;\tfrac{1}{2})$:
+$$
+\bm{A}(\bm{X},t)=\partial_t^2 \bm{x}(\bm{X},t).
+$$
+Since $\partial_t^2[\sin(\omega t)]=-\omega^2\sin(\omega t)$, we obtain
+$$
+\bm{A}(\bm{X}_1,t)=(0,\;-\omega^2\alpha\sin(\omega t),\;0).
+$$
 % This is a placeholder for the example problems from the first problem set. 
 % You'll replace this file with the one I supply on canvas. 
