@@ -1,0 +1,77 @@
+\setcounter{section}{1} 
+\section*{Solutions to Examples II: Kinetics, Constitutive Laws, and Viscoelasticity I}
+\label{soln-PS2}
+
+\medskip
+\subsection*{2--1. \textbf{Balance of mass} [4 pts].} 
+We can start with the general form of the conservation of mass equation:
+\begin{equation}
+\label{eq:continuity}
+    \frac{\partial \rho}{\partial t} + \bm{\nabla}_{\bm{x}} \rho \cdot\bm{v} + \rho \bm{\nabla}_{\bm{x}} \cdot \bm{v} = 0.
+\end{equation}
+    Now we want to incorporate the gradient in spherical coordinates, which will give us a few terms for each of the second and third terms here. 
+    The gradient of a scalar function in spherical coordinates is:
+\begin{equation*}
+    \bm{\nabla}_{\bm{x}} \rho = \frac{\partial \rho}{\partial r} \bm{e}_r + \frac{1}{r} \frac{\partial \rho}{\partial \theta} \bm{e}_\theta  + \frac{1}{r\sin\theta}\frac{\partial \rho}{\partial \phi} \bm{e}_\phi  
+\end{equation*}
+The divergence of a vector function $\bm{v}$ is:
+\begin{equation*}
+    \bm{\nabla}_{\bm{x}} \cdot \bm{v} = \frac{\partial v_r}{\partial r} + 2\frac{v_r}{r}+ \frac{1}{r}\frac{\partial v_\theta}{\partial \theta} + \frac{1}{r \sin\theta}\frac{\partial v_\phi}{\partial \phi} + \frac{v_\theta}{r}\cot\theta.
+\end{equation*}
+Now, since $\bm{v} = v_r \bm{e}_r$, we can drop all of the partial derivatives with respect to $\theta$ and $\phi$, which leaves the divergence of velocity as
+\begin{equation*}
+    \bm{\nabla}_{\bm{x}} \cdot \bm{v} = \frac{\partial v_r}{\partial r} + 2\frac{v_r}{r}.
+\end{equation*}
+Incorporating incompressibility means that the density $\rho$ cannot be a function of $\bm{x}$ or $t$, so the time derivatives and gradient of $\rho$ corresponding to the first two terms, respectively, in Eq. \ref{eq:continuity} must be zero. 
+This leaves
+\begin{equation*}
+    \frac{\partial v_r}{\partial r} + 2\frac{v_r}{r} = 0,
+\end{equation*}
+which we can separate and integrate from the bubble wall to a position with a corresponding velocity as follows:
+\begin{align*}
+    \frac{\partial v_r}{\partial r} &= -2\frac{v_r}{r}\\
+    \int_{\dot{R}}^{v_r} \frac{1}{\tilde{v}_r} d\tilde{v}_r &= -2\int_R^r \frac{1}{\tilde{r}} d\tilde{r}\\
+    \ln\left(\frac{v_r}{\dot{R}}\right) &= -2 \ln\left(\frac{r}{R}\right)\\
+    v_r &= \frac{R^2}{r^2}\dot{R} ~.//
+\end{align*}
+
+
+\medskip
+\subsection*{2--2. \textbf{Balance of momenta} [4 pts].}
+
+To start, let's write out the balance of linear momentum.
+\begin{equation*}
+    \int_{\partial\Omega} \bm{t}~dA + \int_{\Omega} \bm{b} ~dV = \int_{\Omega} \rho \bm{a} ~dV.
+\end{equation*}
+From here, we can calculate each of the individual integrals on the left hand side. 
+The first will benefit from the divergence theorem, which can turn it from a surface integral to a simple volumetric one of the divergence of the stress, which is:
+\begin{equation*}
+    \bm{t} = \bm{n} \cdot \bm{\sigma} \Rightarrow \bm{\sigma} = -\rho_w g x_3 \bn{I}.
+\end{equation*}
+The stress can then be used in the volume integral:
+\begin{equation*}
+    \int_{\partial\Omega} \bm{t}~dA  = \int_{\Omega} \bm{\nabla}_{\bm{x}} \cdot \bm{\sigma} ~dV.
+\end{equation*}
+As the stress is just a function of $x_3$, the dot product with the gradient operator simplifies to a derivative with respect to $x_3$ only, and the integrand evaluates to:
+\begin{equation*}
+\bm{\nabla}_{\bm{x}} \cdot \bm{\sigma} = \frac{\partial }{\partial x_3} \left( -\rho_w g x_3 \right) = -\rho_w g.
+\end{equation*}
+Integrating this constant stress divergence over the volume gives us a total integrated traction of $-4\pi\rho_w g R^3/3$. 
+The body force integral is a bit more straightforward as it's just the gravitational force, but we should include the gradient in $x_2$, which is $\rho(\bm{x}) = \rho_w \left(1 + \frac{1}{2}\frac{x_2}{R}\right)$. 
+We can be clever with our choice of the primary axis of our sphere to coincide with the direction of $\bm{e}_2$, which makes $x_2 = r\cos\phi$ and $x_1$ and $x_3$ some combination of $\pm r\cos\theta\sin\phi$ and $\pm r\sin\theta\sin\phi$. 
+If we want both to be positive, we take $x_1 = r\cos\theta\sin\phi$ and $x_3 = r\sin\theta\sin\phi$. 
+Integrating the body force in spherical coordinates (more important for later than now) then becomes
+\begin{align*}
+    \int_{\Omega} \bm{b} ~dV &= \int_0^\pi \int_0^R \int_0^{2\pi} \rho_w \left(1+\frac{1}{2}\cos\phi\right) g~r^2 \sin\phi ~d\theta dr d\phi\\
+    &= 2\pi\rho_w g \int_0^\pi \int_0^R  \left(1+\frac{1}{2}\cos\phi\right)~r^2 \sin\phi ~ dr d\phi\\
+    &= 2\pi \frac{R^3}{3}\rho_w g \left.\left(-\cos\theta -\frac{\cos^2\theta}{4}  \right)\right|_0^{\pi}\\
+    &= \frac{4\pi R^3}{3}\rho_w g
+\end{align*}
+The body force is the weight due to gravity, which perfectly offsets the traction on the region occupied by the sphere supplied by the displaced water. 
+Thus, this is naturally in equilibrium!
+Note though, that this is ``for now''. 
+If the sphere were to rotate we'd have to change the direction of the gradient, replacing the $\cos\theta/2$ with a different Cartesian direction's representation in spherical. 
+More on this in a bit!
+
+Now we want to consider the integral of 
+
