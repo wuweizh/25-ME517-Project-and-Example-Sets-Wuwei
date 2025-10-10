@@ -1,7 +1,86 @@
-\section{Linear Viscoelasticity Examples}
+\setcounter{section}{3} % This causes the next section to be Appendix B
+
+
+\section*{Examples III. Linear Viscoelastic Models}
 \label{PS3}
 
-This set of example problems is due on October 15, 2025. 
+This set of example problems is due on October 17, 2025. 
 
 % This is a placeholder for the example problems from the third problem set. 
 % You'll replace this file with the one I supply on canvas. 
+
+\medskip
+\subsection*{3--1. \textbf{Converting creep to relaxation} [4 pts].} 
+Say we measure the creep function for a material by fitting a sum of exponential functions to some data. 
+We determine the creep function to be 
+\begin{equation}
+    J_c(t) = \frac{1}{1000}\left(10 - 5 e^{-t/4} - 3e^{-t/8}\right).
+\end{equation}
+(a) Attach a plot of $J_c(t)$, labeling significant values.
+
+(b) Determine the corresponding stress relaxation function $G_r(t)$. What are the characteristic stress relaxation times now, and how do they compare to the creep relaxation times? 
+
+\bigskip
+\bigskip
+\bigskip
+\subsection*{3--2. \textbf{Alternate standard linear solid model} [4 pts].}
+
+In class, we derived the relaxation and creep compliance functions $G_r(t)$ and $J_c(t)$ for a standard linear solid (SLS) model consisting of a spring in parallel with a Maxwell branch. 
+In this question, we'll investigate a variant arrangement for the SLS, where a spring is placed in series with a Kelvin-Voigt solid. 
+
+(a) Determine the differential constitutive law for the variant SLS. 
+
+(b) Then, the creep compliance function $J_c(t)$ and hence, the relaxation function $G_r(t)$.
+
+(c) How do the coefficients in the two variants of the standard solid model relate to each other?
+
+\bigskip
+\bigskip
+\bigskip
+\subsection*{3--3. \textbf{Frequency response of a 5-term analog model} [4 pts].}
+You have a five-parameter fit $G_r(t) = C_r (200 e^{-2t} + 100 e^{-t} + 10)$ that describes the relaxation behavior of a real material. 
+
+(a) Draw the equivalent mechanical analog model for this fit.
+
+(b) Determine the functional forms for the storage and loss moduli, and create a semi-log plot of the loss tangent $(\tan\delta)$ over a domain of relevant frequency orders $(\log \omega)$. 
+
+\newpage
+\subsection*{3--4. \textbf{Fractional response} [4 pts].}
+
+This question will be best approached numerically, using e.g. Matlab or Mathematica. 
+
+Fractional order models can be used to show relaxation that does not follow the classic ``S-curve'' Debye relaxation function for $G_r(t)$ vs. $\log t$. 
+
+Starting from a Kelvin-Voigt-type fractional model with the functional form of 
+\begin{equation*}
+    G_r(t) = \left[10 + 2\left(\frac{t}{0.2} \right)^{-\alpha}\right] \mathcal{H}(t),
+\end{equation*}
+plot the stress and strain responses of this solid over time (i.e., plot $\sigma(t,\alpha)$ and $\varepsilon(t,\alpha)$ on separate plots for each part) for a range of values of $0<\alpha<1$ to (a) a step strain, (b) a step stress of only length $t=5$, and (c) another stress function entirely of your choice. 
+
+As a suggestion, you could consider values spaced symmetrically around zero on the logistic distribution, which is defined as $\textrm{logit}(\alpha) = \log\left(\frac{\alpha}{1-\alpha} \right)$. 
+Picking e.g., logit($\alpha$)$=0$ corresponds to $\alpha =0.5$, $\textrm{logit}(\alpha) =  1$ is $\alpha\approx0.73$, etc. 
+I suggest sampling integers on a range of logit($\alpha$) $= -4 \textrm{~to~} 4$ to cover the full range from elastic to viscous response for the springpot.
+
+\bigskip
+\bigskip
+\subsection*{3--5. \textbf{Rheology without a rheometer} [8 pts].}
+
+You have a rubbery material of density $\rho$ for which you plan to characterize frequency-dependent viscoelastic behavior. 
+The material you have can be made into a sphere of a wide range of sizes, from a radius of $R=1$ mm to $R=1$ m. 
+You plan to drop each ball onto a rigid half-space from a height $h_0$, and can measure the rebound height $h(R)$ for each ball radius $R$. 
+
+The impact duration for an elastic material is given by a Hertzian contact relation of
+\begin{equation*}
+    t_c = 5.21\frac{R}{c}\left(\frac{c}{\sqrt{2 g h_0}}\right)^{1/5} \approx 0.025R  \textrm{~~[s]}
+\end{equation*}
+where $c = 1000$ m/s represents the pressure wave speed in the material and the initial height $h_0$ is taken to be a consistent 0.01 m.
+
+(a) How much energy per volume is dissipated by the material for each size of ball? 
+
+(b) Using the Lissajous plot of $\sigma/|E^*|$ vs. $\varepsilon$, show that the approximate peak elastic energy stored in the ball during a half-cycle is $\frac{1}{2} B^2 \cos \delta$, where $B = \varepsilon_{\textrm{max}}$. 
+
+(c) Determine an approximate expression for the energy dissipated by the ball during a drop event in terms of $A = \varepsilon_{\textrm{max}} \sin \delta$ and $B$. 
+
+(d) Hence, determine $\tan\delta$ as a function of the rebound height, $h(R)$. 
+
+(e) For what frequencies could you say this material is calibrated?

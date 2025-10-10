@@ -1,0 +1,255 @@
+\setcounter{section}{1} 
+\section*{Solutions to Examples II: Kinetics, Constitutive Laws, and Viscoelasticity I}
+\label{soln-PS2}
+
+\medskip
+\subsection*{2--1. \textbf{Balance of mass} [4 pts].} 
+We can start with the general form of the conservation of mass equation:
+\begin{equation}
+\label{eq:continuity}
+    \frac{\partial \rho}{\partial t} + \bm{\nabla}_{\bm{x}} \rho \cdot\bm{v} + \rho \bm{\nabla}_{\bm{x}} \cdot \bm{v} = 0.
+\end{equation}
+    Now we want to incorporate the gradient in spherical coordinates, which will give us a few terms for each of the second and third terms here. 
+    The gradient of a scalar function in spherical coordinates is:
+\begin{equation*}
+    \bm{\nabla}_{\bm{x}} \rho = \frac{\partial \rho}{\partial r} \bm{e}_r + \frac{1}{r} \frac{\partial \rho}{\partial \theta} \bm{e}_\theta  + \frac{1}{r\sin\theta}\frac{\partial \rho}{\partial \phi} \bm{e}_\phi  
+\end{equation*}
+The divergence of a vector function $\bm{v}$ is:
+\begin{equation*}
+    \bm{\nabla}_{\bm{x}} \cdot \bm{v} = \frac{\partial v_r}{\partial r} + 2\frac{v_r}{r}+ \frac{1}{r}\frac{\partial v_\theta}{\partial \theta} + \frac{1}{r \sin\theta}\frac{\partial v_\phi}{\partial \phi} + \frac{v_\theta}{r}\cot\theta.
+\end{equation*}
+Now, since $\bm{v} = v_r \bm{e}_r$, we can drop all of the partial derivatives with respect to $\theta$ and $\phi$, which leaves the divergence of velocity as
+\begin{equation*}
+    \bm{\nabla}_{\bm{x}} \cdot \bm{v} = \frac{\partial v_r}{\partial r} + 2\frac{v_r}{r}.
+\end{equation*}
+Incorporating incompressibility means that the density $\rho$ cannot be a function of $\bm{x}$ or $t$, so the time derivatives and gradient of $\rho$ corresponding to the first two terms, respectively, in Eq. \ref{eq:continuity} must be zero. 
+This leaves
+\begin{equation*}
+    \frac{\partial v_r}{\partial r} + 2\frac{v_r}{r} = 0,
+\end{equation*}
+which we can separate and integrate from the bubble wall to a position with a corresponding velocity as follows:
+\begin{align*}
+    \frac{\partial v_r}{\partial r} &= -2\frac{v_r}{r}\\
+    \int_{\dot{R}}^{v_r} \frac{1}{\tilde{v}_r} d\tilde{v}_r &= -2\int_R^r \frac{1}{\tilde{r}} d\tilde{r}\\
+    \ln\left(\frac{v_r}{\dot{R}}\right) &= -2 \ln\left(\frac{r}{R}\right)\\
+    v_r &= \frac{R^2}{r^2}\dot{R} ~.//
+\end{align*}
+
+
+\medskip
+\subsection*{2--2. \textbf{Balance of momenta} [4 pts].}
+
+To start, let's write out the balance of linear momentum.
+\begin{equation*}
+    \int_{\partial\Omega} \bm{t}~dA + \int_{\Omega} \bm{b} ~dV = \int_{\Omega} \rho \bm{a} ~dV.
+\end{equation*}
+From here, we can calculate each of the individual integrals on the left hand side. 
+The first will benefit from the divergence theorem, which can turn it from a surface integral to a simple volumetric one of the divergence of the stress, which is:
+\begin{equation*}
+    \bm{t} = \bm{n} \cdot \bm{\sigma} \Rightarrow \bm{\sigma} = -\rho_w g x_3 \bn{I}.
+\end{equation*}
+The stress can then be used in the volume integral:
+\begin{equation*}
+    \int_{\partial\Omega} \bm{t}~dA  = \int_{\Omega} \bm{\nabla}_{\bm{x}} \cdot \bm{\sigma} ~dV.
+\end{equation*}
+As the stress is just a function of $x_3$, the dot product with the gradient operator simplifies to a derivative with respect to $x_3$ only, and the integrand evaluates to:
+\begin{equation*}
+\bm{\nabla}_{\bm{x}} \cdot \bm{\sigma} = \frac{\partial }{\partial x_3} \left( -\rho_w g x_3 \right) = -\rho_w g.
+\end{equation*}
+Integrating this constant stress divergence over the volume gives us a total integrated traction of $-4\pi\rho_w g R^3/3$. 
+The body force integral is a bit more straightforward as it's just the gravitational force, but we should include the gradient in $x_2$, which is $\rho(\bm{x}) = \rho_w \left(1 + \frac{1}{2}\frac{x_2}{R}\right)$. 
+We can be clever with our choice of the primary axis of our sphere to coincide with the direction of $\bm{e}_2$, which makes $x_2 = r\cos\phi$ and $x_1$ and $x_3$ some combination of $\pm r\cos\theta\sin\phi$ and $\pm r\sin\theta\sin\phi$. 
+If we want both to be positive, we take $x_1 = r\cos\theta\sin\phi$ and $x_3 = r\sin\theta\sin\phi$. 
+Integrating the body force in spherical coordinates (more important for later than now) then becomes
+\begin{align*}
+    \int_{\Omega} \bm{b} ~dV &= \int_0^\pi \int_0^R \int_0^{2\pi} \rho_w \left(1+\frac{1}{2}\cos\phi\right) g~r^2 \sin\phi ~d\theta dr d\phi\\
+    &= 2\pi\rho_w g \int_0^\pi \int_0^R  \left(1+\frac{1}{2}\cos\phi\right)~r^2 \sin\phi ~ dr d\phi\\
+    &= 2\pi \frac{R^3}{3}\rho_w g \left.\left(-\cos\theta -\frac{\cos^2\theta}{4}  \right)\right|_0^{\pi}\\
+    &= \frac{4\pi R^3}{3}\rho_w g
+\end{align*}
+The body force is the weight due to gravity, which perfectly offsets the traction on the region occupied by the sphere supplied by the displaced water. 
+Thus, this is naturally in equilibrium!
+Note though, that this is ``for now''. 
+If the sphere were to rotate we'd have to change the direction of the gradient, replacing the $\cos\theta/2$ with a different Cartesian direction's representation in spherical. 
+More on this in a bit!
+
+Now we want to consider the integrals of the moment terms. 
+The integral for the traction becomes:
+\begin{equation*}
+    \int_{\partial \Omega} \bm{x} \times \bm{t}~dA  = \int_{\partial\Omega} \bm{x} \times (\nabla_{\bm{x}} \cdot \bm{\sigma})~d
+    A. 
+\end{equation*}
+We can apply the divergence theorem and write this in index notation now, and manipulate this further:
+\begin{align*}
+   & \int_{ \Omega} \epsilon_{ijk} \frac{\partial}{\partial x_m} (x_j \sigma_{mk}) \bm{e}_i ~dV\\
+   =& \int_{ \Omega} -\rho_w g \epsilon_{ijk} \frac{\partial}{\partial x_m} (x_j x_3 \delta_{mk}) \bm{e}_i ~dV\\
+   =& -\rho_w g \int_{ \Omega}  \epsilon_{ijk} \frac{\partial}{\partial x_k} (x_j x_3) \bm{e}_i ~dV\\
+   =& -\rho_w g \int_{ \Omega}  \epsilon_{ij3}x_j \bm{e}_i ~dV\\
+    =& -\rho_w g \int_{ \Omega}  \epsilon_{ijk} (\cancelto{0, \textrm{ since } \epsilon_{ijj} = 0}{x_3 \delta_{jk}} + x_j \delta_{3k}) \bm{e}_i ~dV\\
+    =& -\rho_w g \int_{ \Omega}  \epsilon_{ij3}x_j \bm{e}_i ~dV\\
+    =& -\rho_w g \int_{ \Omega}  (x_2 \bm{e}_1 - x_1 \bm{e}_2) ~dV.
+\end{align*}
+
+Now, let's deal with the body force term:
+\begin{equation*}
+    \int_{ \Omega} \bm{x} \times \bm{b}~dV  = \int_{ \Omega} \bm{x} \times \rho(\bm{x}) g \bm{e}_3~dV.
+\end{equation*}
+The density function doesn't affect the cross product, which, in index notation, is:
+\begin{align*}
+    \int_\Omega \rho(\bm{x}) g\epsilon_{ij3} x_j \bm{e}_3 \bm{e}_i dV\\
+    =\int_\Omega \rho(\bm{x}) g(x_2 \bm{e}_1 - x_1 \bm{e}_2) dV.
+\end{align*}
+The sum of the two terms is (which would be zero if we're in rotational equilibrium):
+\begin{align*}
+    \int_\Omega (\rho(\bm{x}) g - \rho_w g)(x_2 \bm{e}_1 - x_1 \bm{e}_2) dV.
+\end{align*}
+Now we'll write everything in spherical coordinates as above,
+\begin{align*}
+   & \int_0^\pi \int_0^{2\pi} \int_0^R \left( \rho_w\left(1+\frac{1}{2}   \cos\phi\right)g-\rho_w g \right) r^2 \sin\phi \left(r\cos\phi \bm{e}_1 - r \cos\theta \sin\phi \bm{e}_2 \right) dr d\theta d\phi\\
+   =&\frac{1}{2}\rho_w g \int_0^\pi \int_0^{2\pi} \int_0^R r^3 \cos\phi \sin\phi \left(\cos\phi \bm{e}_1 - \cos\theta \sin\phi \bm{e}_2 \right) dr d\theta d\phi\\
+   =&\frac{1}{8}R^4 \rho_w g \int_0^\pi \int_0^{2\pi}  \left(\cos^2\phi \sin\phi \bm{e}_1 - \cos\theta \cos\phi \sin^2 \phi \bm{e}_2 \right)  d\theta d\phi\\
+    =&\frac{\pi}{4}R^4 \rho_w g \int_0^\pi  \cos^2\phi \sin\phi \bm{e}_1  d\phi\\
+    =&\frac{\pi}{4}R^4 \rho_w g \cdot -\frac{1}{3}\cos^3\phi\Big|_0^\pi \bm{e}_1 \\
+    =& \frac{\pi}{6} \rho_w g R^4 \bm{e}_1.
+\end{align*}
+Note what this means---there's a non-zero moment! 
+This moment arises because the horizontal gradient requires a moment to sustain. 
+What would happen is a rotation such that the gradient would settle vertically, such that the bottom would be the densest and the top would be the least dense. 
+
+\bigskip
+\subsection*{2--3. \textbf{Viscoelastic data} [4 pts].} 
+
+(a) For linear viscoelasticity, we require the material to respond linearly (i.e. stress proportional to strain) regardless of the time, $t$. 
+How this slope changes is the function of time we care about, but the slope must be constant over some region of interest---in this case, something like $\varepsilon<1.5\times10^{-3}$. 
+This is in contrast to e.g. quasi-linear viscoelasticity (QLV), where a material may have a non-linear stress-strain response but this functional form $f(\varepsilon)$ must not change based on time. 
+
+(b) The strain data at 100 Pa and 250 Pa are:
+\begin{table}[h]
+    \caption{Strain values for different stress levels. All strains are $\times 10^{-3}$.}
+    \centering
+\begin{tabular}{c c c}
+     & \textbf{$\bm{\sigma_1=}$ 100 Pa}  & \textbf{$\bm{\sigma_2=}$ 250 Pa}\\ \hline
+      \textbf{Time} & \textbf{Strain}  & \textbf{Strain}\\ \hline
+    2 & 0.45 & 1.20\\
+    5 & 0.53 & 1.45\\
+    10 & 0.68 & 1.80\\
+    20 & 0.84 & 2.40\\
+    40 & 1.00 & 3.00
+\end{tabular}
+\end{table}
+
+The creep compliance $J_c(t)$ at any time will be $J_c(t) = \epsilon(t)/\sigma_0$. 
+Rewriting the tables as creep compliance, we get the following.
+\begin{table}[H]
+    \caption{Creep compliance $J_c(t)$ at stress levels of 100 Pa and 250 Pa.}
+    \centering
+\begin{tabular}{c c c}
+    & \textbf{$\bm{\sigma_1=}$ 100 Pa}  & \textbf{$\bm{\sigma_2=}$ 250 Pa}\\ \hline
+   \textbf{Time} & \textbf{Compliance}  & \textbf{Compliance}\\ \hline
+    2 & 0.45 $\times 10^{-5}$ & 0.48 $\times 10^{-5}$\\
+    5 & 0.53 $\times 10^{-5}$ & 0.58 $\times 10^{-5}$\\
+    10 & 0.68 $\times 10^{-5}$ & 0.72 $\times 10^{-5}$\\
+    20 & 0.84 $\times 10^{-5}$ & 0.96 $\times 10^{-5}$\\
+    40 & 1.00 $\times 10^{-5}$ & 1.20 $\times 10^{-5}$
+\end{tabular}
+\end{table}
+We now need to figure out the creep compliance function. 
+The creep compliance ought to increase as a function of time as the material softens. 
+We may not necessarily know the functional form of this response, but we expect a stiff baseline behavior and subsequent relaxation. 
+We probably expect it to also plateau to some other value at long times (that we did not measure). 
+
+Other than that, I'd suggest trying something with an exponential, e.g. fitting to $J_c(t) = J_\infty(1-\exp(-t/\tau))$, which is the Kelvin-Voigt material model.
+ To do this, we just divide by $J_
+\infty$ and take a log of the expression:
+\begin{equation*}
+     \ln \left(1-\frac{J_c(t)}{J_\infty}\right) = -t/\tau.
+\end{equation*}
+There'd be a considerable assumption using $J_\infty$ as the value at 40 seconds, but it may be usable for determining the relaxation regardless. 
+The result is a relaxation time on the order of $\approx 4-10$, monotonically increasing. 
+What we can take away from this is that the relaxation time actually continues to increase as the material is loaded; this suggests either a spectrum of relaxation, some other functional dependence, or that we're missing complexity by using this model.
+
+\bigskip
+\subsection*{2--4. \textbf{Impulsive stresses} [4 pts].}
+
+(a) We start with the general form for strain as a function of stress in a viscoelastic material:
+\begin{equation*}
+    \varepsilon(t) = \int_{0^-}^tJ_c(t-\tau) \dot{\sigma}(\tau) d\tau.
+\end{equation*}
+This is okay for the first part of our problem once we substitute in our actual stress function:
+\begin{equation*}
+     \varepsilon(t) = \int_{0^-}^tJ_c(t-\tau)  A \psi(\tau) d\tau.
+\end{equation*}
+Then, we need to use a specific $J_c(t)$ for the second half. 
+The Kelvin-Voigt function for $J_c(t)$ is
+\begin{equation*}
+    J_c(t) = \frac{1}{E} \left( 1 - e^{-Et/\eta}\right).
+\end{equation*}
+This will be most straightforward to approach in Laplace space.
+\begin{equation*}
+    J(t)*\dot{\sigma}(t) = \bar{J}(s)\cdot \bar{\dot{\sigma}}(s) =  s\bar{{\sigma}}(s)\bar{J}(s).
+\end{equation*}
+
+We just need some transforms now.
+\begin{align*}
+    \bar{\varepsilon}(s) &= \frac{1}{E} \left( \frac{1}{s} - \frac{1}{s+\frac{E}{\eta}}\right) \cdot s\cdot A\\
+    &= \frac{A}{E}\left( 1 - \frac{s}{s+\frac{E}{\eta}} \right)\\
+    \varepsilon(t) &= \frac{A}{\eta} e^{-Et/\eta}.
+\end{align*}
+
+
+(b) We follow up with a doublet stress, where $\sigma(t) = B\psi(t)$. 
+\begin{align*}
+    \bar{\varepsilon}(s) &= \frac{1}{E} \left( \frac{1}{s} - \frac{1}{s+\frac{E}{\eta}}\right) \cdot s\cdot Bs\\
+    &= \frac{B}{E}\left( s - \frac{s^2}{s+\frac{E}{\eta}} \right)\\
+    \varepsilon(t) &= \frac{B}{E}\delta(t) - \frac{BE}{\eta^2} e^{-Et/\eta}.
+    %\varepsilon(t) &=\frac{B}{\eta}\psi(t) - \frac{B E}{\eta^2}\delta(t) +  \frac{BE^2}{\eta^3} e^{-Et/\eta}.
+\end{align*}
+Note that this will converge to $\varepsilon(t>0^+)=- \frac{BE}{\eta^2} e^{-Et/\eta}$ after the initial delta function. 
+
+
+\bigskip
+\subsection*{2--5. \textbf{Two-element models} [8 pts].}
+
+(a+b) The differential constitutive law for a Kelvin-Voigt material is
+\begin{equation*}
+    \eta \dot{\varepsilon}(t) + E \varepsilon(t) = \sigma(t). 
+\end{equation*}
+If we take the strain to be $\varepsilon(t) = -\varepsilon_0 \mathcal{H}(t) - \varepsilon_0 \sin\omega t$, we just need to take a derivative of the strain function to get the strain rate: $\dot{\varepsilon}(t) = -\omega \varepsilon_0 \cos\omega t + \varepsilon_0\delta(t)$.
+We can then get the stress,
+\begin{align*}
+    \sigma(t) &= \omega \eta (-\varepsilon_0\cos\omega t - \varepsilon_0 \delta(t)) + E(-\varepsilon_0 - \varepsilon_0 \mathcal{H}(t) \sin\omega t).
+\end{align*}
+From here, we can use an identity to combine the cosine and sine terms:
+\begin{equation*}
+     A \sin \omega t + B \cos \omega t= \sqrt{A^2 + B^2} \sin (\omega t + \delta), \textrm{~~where } \delta=\tan^{-1}\frac{B}{A}.
+\end{equation*}
+Rearranging the stress terms and considering times $t>0^+$, we get:
+\begin{equation*}
+    \sigma(t) = -E\varepsilon_0 - \varepsilon_0 \sqrt{\omega^2 \eta^2 + E^2} \sin\left( \omega t + \tan^{-1} \frac{\omega \eta}{E}\right).
+\end{equation*}
+Thus, $\tan \delta = \omega\eta/E$.
+
+(c+d) Now, we'll consider the case where we prescribe the stress function $\sigma(t)$. 
+The stress here will be $\sigma(t) = -\sigma_0 \mathcal{H}(t) - \sigma_0 \sin \omega t$, which leads to a differential form of: 
+\begin{align*}
+     \eta \dot{\varepsilon}(t) + E \varepsilon(t) = -\sigma_0  - \sigma_0 \sin \omega t. 
+\end{align*}
+Now, divide both sides by $\eta$ and solve this using integrating factors.
+\begin{align*}
+    \dot{\varepsilon} e^{E t/\eta} + \frac{E}{\eta}\varepsilon e^{E t/\eta} &= \frac{1}{\eta}e^{Et/\eta}\left[-\sigma_0 - \sigma_0 \sin \omega t\right]\\
+    \frac{d}{dt}\left( \varepsilon e^{Et/\eta} \right) &= \frac{1}{\eta}e^{Et/\eta}\left[-\sigma_0 - \sigma_0 \sin \omega t\right]\\
+    (\varepsilon(t) - \varepsilon(0^-))e^{Et/\eta} &= \int_{0^-}^t \frac{1}{\eta}e^{E\tilde{t}/\eta}\left[-\sigma_0 - \sigma_0 \sin \omega \tilde{t}\right] d\tilde{t}.
+\end{align*}
+I'll note here that the integral of an exponential multiplied by a sine function gives:
+\begin{equation*}
+    \int e^{at} \sin \omega t dt = \frac{e^{at}}{a^2 + \omega^2}(a \sin \omega t - \omega \cos \omega t) + \mathcal{C},
+\end{equation*}
+giving us:
+\begin{align*}
+ (\varepsilon(t) - \varepsilon(0^-))e^{Et/\eta} &= -\frac{\sigma_0}{\eta} \frac{e^{Et/\eta}}{\left( \frac{E}{\eta}\right)^2 + \omega^2}\left(\frac{E}{\eta} \sin \omega t - \omega \cos \omega t\right)\Bigg|_{0^-}^t - \frac{\sigma_0}{E} e^{Et/\eta}\\
+ \varepsilon(t) &= -\frac{\sigma_0}{\eta} \frac{1}{\left( \frac{E}{\eta}\right)^2 + \omega^2}\left(\frac{E}{\eta} \sin \omega t - \omega \cos \omega t - \omega e^{-Et/\eta}\right)  - \frac{\sigma_0}{E}. 
+\end{align*}
+Now we take the exact same approach as above, which leads us to $\tan \delta = -\omega\eta/E$. 
+This essentially says that stress lags the strain response by $\delta$ either way; we have kind of defined $\tan \delta$ here at strain with respect to stress, which should be the reverse of stress with respect to strain. 
+Thus, $\tan \delta$ is the same for both.
+
