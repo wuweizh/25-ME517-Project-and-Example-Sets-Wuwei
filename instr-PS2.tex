@@ -29,6 +29,34 @@ and hence, show that an assumption of incompressibility for PDMS results in
 \begin{equation*}
 v_r(r,t) = \frac{R^2 \dot{R}}{r^2}.
 \end{equation*}
+\medskip
+\textbf{Answer:}
+The Eulerian continuity equation is
+$$
+\frac{\partial \rho}{\partial t} + \nabla\!\cdot(\rho \bm v) = 0.
+$$
+
+For spherical symmetry with $\bm v(r,t) = v_r(r,t)\,\bm e_r$ and $\rho=\rho(r,t)$, we have
+$$
+\nabla \cdot (\rho v_r \bm e_r) = \frac{1}{r^2} \frac{\partial}{\partial r} \!\big( r^2 \rho v_r \big).
+$$
+Thus,
+$$
+\rho_{,t} + \frac{1}{r^2}\frac{\partial}{\partial r}(r^2 \rho v_r) = 0,
+$$
+or equivalently
+$$
+\rho_{,t} + \rho_{,r} v_r + \frac{\rho}{r}(2 v_r + r v_{r,r}) = 0.
+$$
+
+For incompressible PDMS ($\rho=$ constant), the condition reduces to
+$$
+v_{r,r} + \frac{2}{r} v_r = 0 \quad \Longrightarrow \quad r^2 v_r(r,t) = C(t).
+$$
+Using $v_r(R,t) = \dot R(t)$ at the bubble wall, $C(t) = R^2 \dot R$. Hence
+$$
+v_r(r,t) = \frac{R^2(t)\dot R(t)}{r^2}.
+$$
 
 \medskip
 \subsection*{2--2. \textbf{Balance of momenta} [4 pts].} A spherical hydrogel body $\mathcal{B}$ with a linear density gradient is currently submerged in water as depicted in the figure. 
@@ -37,7 +65,7 @@ The sphere has coordinates $\bm{x}$ in a region $\Omega$ with position-dependent
 \begin{figure}[H]
 \vspace{-2em}
 \centering
-\includegraphics[width=3in]{instr-figures/PS2-Q1.pdf}  
+\includegraphics[width=3in]{instr-figures/PS2-Q1.pdf}      
 \caption{\small{Hydrogel sphere with a linear density gradient submerged in water. The water has a density $\rho_w$, while the sphere has a density at its leftmost point of $\rho_w/2$ and at its rightmost point of $3\rho_w/2$.}}
 \end{figure}
 
@@ -50,10 +78,62 @@ where $\hat{\bm{n}}$ is the outer unit normal to the surface $\partial \Omega_t$
 
 \medskip
 (a) Determine the net force and moment acting on $\mathcal{B}$ via volume integrals.
+Suppose the density varies linearly in the $x_2$ direction as
+$$
+\rho(x_2) = \rho_w \left( 1 + \frac{x_2}{2R} \right),
+$$
+so that at $x_2=-R$ we have $\rho = 0.5\rho_w$ and at $x_2=R$ we have $\rho=1.5\rho_w$.
 
+The general net force is
+$$
+\bm F = g \,(\int_\Omega \rho(x_2)\,dV - \rho_w V)\,\bm e_3,
+$$
+Because the average value of $\rho(x_2)$ across the symmetric sphere equals $\rho_w$. Thus
+$$
+\bm F = \bm 0.
+$$
+
+The net moment is
+$$
+\bm M = g \int_\Omega \rho(x_2)\,\bm x\,dV \times \bm e_3,
+$$
+because the surface traction orients through the center of mass and contributes zero moment.
+
+By symmetry, only the $x_2$-component survives:
+$$
+\int_\Omega \rho(x_2)\,x_2\,dV 
+= \rho_w \int_\Omega \left( x_2 + \frac{x_2^2}{2R} \right) dV.
+$$
+The first term vanishes (odd in $x_2$), leaving
+$$
+\int_\Omega \rho(x_2)\,x_2\,dV 
+= \frac{\rho_w}{2R}\int_\Omega x_2^2 \, dV.
+$$
+
+For a sphere of radius $R$,
+$$
+\int_\Omega x_2^2 \, dV 
+= \frac{1}{3}\int_\Omega r^2 \, dV 
+= \frac{1}{3}\cdot \frac{4\pi R^5}{5} 
+= \frac{4\pi R^5}{15}.
+$$
+
+Therefore,
+$$
+\int_\Omega \rho(x_2)\,\bm x\,dV = \frac{2\pi}{15}\rho_w R^4\,\bm e_2,
+$$
+
+Finally, since $\bm e_2 \times \bm e_3 = \bm e_1$,
+$$
+\bm M = \tfrac{2}{15}\pi \rho_w g R^4 \,\bm e_1.
+$$
 \medskip
 (b) Under what \textit{two} conditions is $\mathcal{B}$ in static equilibrium?
 
+For a sphere with a linear density gradient along $x_2$, external loadings are needed to keep it in equilibrium:
+$$
+\bm F = 0, \qquad \bm M_{external} = -\tfrac{2}{15}\pi \rho_w g R^4 \,\bm e_1.
+$$
 
 \bigskip
 \subsection*{2--3. \textbf{Viscoelastic data} [4 pts].} 
@@ -69,21 +149,83 @@ Stress relaxation \textcolor{red}{(Ask yourself: does it actually matter whether
 \vspace{-1em}
 (a) Are these isochrones from a material which we can describe with linear viscoelasticity? If not, why not, and if so, under what approximate regimes would this assumption be valid? 
 
+For a linear viscoelastic (LVE) material, each isochrone $\sigma(\varepsilon,t)$ is a straight line through the origin with slope $E(t)$. 
+In the figure, curves are nearly linear below $\sigma = 200 Pa$ but bend at larger stress and longer time. 
+Thus, the LVE assumption is valid only in the small-strain, small-stress regime.
+
 \medskip
 (b) Estimate the creep relaxation function $J_c$ for stress values of 100 and 250 \textcolor{red}{Pa}. Isochrones are shown at times of 2, 5, 10, 20, and 40 seconds.   
 % This is a placeholder for the example problems from the second problem set. 
 % You'll replace this file with the one I supply on canvas. 
 
+\noindent\textbf{At $\sigma_0=100~\mathrm{Pa}$:}
+$$
+\begin{array}{c|ccccc}
+t~[\mathrm{s}] & 2 & 5 & 10 & 20 & 40\\ \hline
+\varepsilon(t) & 4.25\times10^{-4} & 5.50\times10^{-4} & 6.25\times10^{-4} & 8.00\times10^{-4} & 1.00\times10^{-3}
+\end{array}
+$$
+$$
+J_c(t)\;=\;\frac{\varepsilon(t)}{\sigma_0}
+\;=\;
+\{\,4.25,\;5.50,\;6.25,\;8.00,\;10.0\,\}\times10^{-6}\ \mathrm{Pa}^{-1}.
+$$
+
+\noindent\textbf{At $\sigma_0=250~\mathrm{Pa}$:}
+$$
+\begin{array}{c|ccccc}
+t~[\mathrm{s}] & 2 & 5 & 10 & 20 & 40\\ \hline
+\varepsilon(t) & 1.20\times10^{-3} & 1.45\times10^{-3} & 1.80\times10^{-3} & 2.40\times10^{-3} & 3.00\times10^{-3}
+\end{array}
+$$
+$$
+J_c(t)\;=\;\frac{\varepsilon(t)}{\sigma_0}
+\;=\;
+\{\,4.80,\;5.80,\;7.20,\;9.60,\;12.0\,\}\times10^{-6}\ \mathrm{Pa}^{-1}.
+$$
 \bigskip
 \subsection*{2--4. \textbf{Impulsive stresses} [4 pts].}
 
 (a) Say that instead of a step load, we apply $\sigma(t) = A \delta(t)$ to an unknown linear viscoelastic material. 
-Determine the strain history $\epsilon(t)$, first as a general function of the creep relaxation function $J_c(t)$, and then for a Kelvin-Voigt solid. 
+Determine the strain history $\epsilon(t)$, first as a general function of the creep relaxation function $J_c(t)$, and then for a Kelvin-Voigt solid.
 
+$$
+\varepsilon(t)\;=\;\int_{0}^{t} J_c\!\big(t-\tau\big)\,d\sigma(\tau).
+$$
+Since $d\sigma(\tau)=A\,\delta'(\tau)\,d\tau$, we have
+$$
+\varepsilon(t)
+=\int_{0}^{t} J_c(t-\tau)\,A\,\delta'(\tau)\,d\tau
+= A\,\frac{d}{dt}J_c(t)
+\quad\Rightarrow\quad
+\,\varepsilon(t)=A\,\dot J_c(t)\,.
+$$
+
+\emph{Kelvin--Voigt:} $J_c(t)=\dfrac{1}{E}\big(1-e^{-t/\tau}\big),\ \tau=\dfrac{\eta}{E}$, so
+$$
+\dot J_c(t)=\frac{1}{\eta}\,e^{-t/\tau}
+\quad\Rightarrow\quad
+\,\varepsilon(t)=\dfrac{A}{\eta}\,e^{-t/\tau}\,.
+$$
 (b) Now, consider a rapid load followed by a rapid reverse load by applying a doublet function of stress, i.e. $\sigma(t) = B \psi(t)$. 
 What is the strain function $\epsilon(t)$ in terms of $J_c(t)$ and for a Kelvin-Voigt material now? 
 
+Now $d\sigma(\tau)=B\,\delta''(\tau)\,d\tau$, hence
+$$
+\varepsilon(t)
+=\int_{0}^{t} J_c(t-\tau)\,B\,\delta''(\tau)\,d\tau
+= B\,\frac{d^2}{dt^2}J_c(t)
+\quad\Rightarrow\quad
+\,\varepsilon(t)=B\,\ddot J_c(t)\,.
+$$
 
+\emph{Kelvin--Voigt:}
+$$
+\ddot J_c(t)=-\,\frac{1}{\eta\,\tau}\,e^{-t/\tau}
+= -\,\frac{E}{\eta^{2}}\,e^{-t/\tau}
+\quad\Rightarrow\quad
+\,\varepsilon(t)=-\,\frac{B\,E}{\eta^{2}}\,e^{-t/\tau}\,.
+$$
 \bigskip
 \subsection*{2--5. \textbf{Two-element models} [8 pts].}
 
@@ -95,19 +237,60 @@ The DMA then quickly puts the sample into compression by moving its top plate do
 
 \medskip
 (a) Using the constitutive law for a Kelvin-Voigt material, determine the stress $\sigma(t)$ exerted by the platens to cause the applied strain. 
-
+Applied strain is
+$$
+\varepsilon(t)=-\varepsilon_0-\varepsilon_0\sin(\omega t),\qquad \varepsilon_0=\frac{d}{h}.
+$$
+Stress:
+$$
+\sigma(t)=-E\varepsilon_0 - E\varepsilon_0\sin(\omega t) - \eta \varepsilon_0 \omega \cos(\omega t).
+$$
 \medskip
 (b) The resulting stress lags behind the strain by an phase $\delta$, as in $\sin(\omega t + \delta)$. 
 Commonly this is reported as the ``tangent loss", or $\tan\delta$, for a material. 
 What is the value of $\tan\delta$ for this particular Kelvin-Voigt model?
 
+Combine harmonic terms:
+$$
+\sigma_{\text{ac}}(t)=\varepsilon_0\sqrt{E^2+(\eta\omega)^2}\,\sin(\omega t+\delta),
+$$
+$$
+\tan\delta=\frac{\eta\omega}{E}.
+$$
 \medskip
 (c) Say instead of prescribing the strain $\epsilon(t)$, we instead prescribed the stress, $\sigma(t) = - \sigma_0 - \sigma_0 \sin(\omega t)$. 
 Determine the strain $\epsilon(t)$ for this prescribed stress.
 
+$$
+\varepsilon(t)=\int_{0}^{t} J_c(t-\tau)\,d\sigma(\tau).
+$$
+If $\sigma(t)$ is absolutely continuous, this is
+$$
+\varepsilon(t)=\sigma(0^+)J_c(t)+\int_{0}^{t} J_c(t-\tau)\,\dot\sigma(\tau)\,d\tau.
+$$
+
+For Kelvin--Voigt,
+$$
+J_c(t)=\frac{1}{E}\big(1-e^{-t/\tau}\big),\quad
+\dot J_c(t)=\frac{1}{\eta}e^{-t/\tau},\quad \tau=\eta/E.
+$$
+So
+$$
+\varepsilon(t)=\int_{0}^{t}\frac{1}{\eta}e^{-(t-\tau)/\tau}\,\sigma(\tau)\,d\tau.
+$$
+
+With $\sigma(t)=-\sigma_0-\sigma_0\sin(\omega t)$,
+the strain is
+$$
+\varepsilon(t)=-\frac{\sigma_0}{E}
++\frac{\sigma_0}{\sqrt{E^2+(\eta\omega)^2}}\;\sin(\omega t-\delta),
+\qquad
+\tan\delta=\frac{\eta\omega}{E}.
+$$
 \medskip
 (d) Prove that the tangent loss function $\tan\delta$ is identical between the two loading methods.
 
+It has been proved in (c)
 
 
 
