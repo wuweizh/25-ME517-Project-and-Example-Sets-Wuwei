@@ -138,7 +138,7 @@ This is in contrast to e.g. quasi-linear viscoelasticity (QLV), where a material
 \end{tabular}
 \end{table}
 
-The creep compliance $J_c(t)$ at any time will be $J_c(t) = \epsilon(t)/\sigma_0$. 
+The creep compliance $J_c(t)$ at any time will be $J_c(t) = \varepsilon(t)/\sigma_0$. 
 Rewriting the tables as creep compliance, we get the following.
 \begin{table}[H]
     \caption{Creep compliance $J_c(t)$ at stress levels of 100 Pa and 250 Pa.}
@@ -250,6 +250,6 @@ giving us:
  \varepsilon(t) &= -\frac{\sigma_0}{\eta} \frac{1}{\left( \frac{E}{\eta}\right)^2 + \omega^2}\left(\frac{E}{\eta} \sin \omega t - \omega \cos \omega t - \omega e^{-Et/\eta}\right)  - \frac{\sigma_0}{E}. 
 \end{align*}
 Now we take the exact same approach as above, which leads us to $\tan \delta = -\omega\eta/E$. 
-This essentially says that stress lags the strain response by $\delta$ either way; we have kind of defined $\tan \delta$ here at strain with respect to stress, which should be the reverse of stress with respect to strain. 
+This essentially says that stress \textcolor{red}{leads} the strain response by $\delta$ either way; we have kind of defined $\tan \delta$ here at strain with respect to stress, which should be the reverse of stress with respect to strain. 
 Thus, $\tan \delta$ is the same for both.
 
