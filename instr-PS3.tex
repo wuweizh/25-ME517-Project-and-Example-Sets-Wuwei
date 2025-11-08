@@ -17,8 +17,55 @@ We determine the creep function to be
     J_c(t) = \frac{1}{1000}\left(10 - 5 e^{-t/4} - 3e^{-t/8}\right).
 \end{equation}
 (a) Attach a plot of $J_c(t)$, labeling significant values.
+Significant values: $$J_c(0^+) = 2\times 10^{-3}\ {\rm Pa^{-1}},\qquad J_c(\infty)=10\times 10^{-3}\ {\rm Pa^{-1}}.$$ 
+The characteristic \emph{creep} times from the fit are $$\tau_{c1}=4~{\rm s},\qquad \tau_{c2}=8~{\rm s}.$$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{fig_PS3_Jc.png}
+\caption{\small Creep compliance $J_c(t)$.}
+\end{figure}
 
 (b) Determine the corresponding stress relaxation function $G_r(t)$. What are the characteristic stress relaxation times now, and how do they compare to the creep relaxation times? 
+For linear viscoelasticity,
+$$
+\big[s\,J_c(s)\big]\big[s\,G_r(s)\big]=1
+\quad\Longleftrightarrow\quad
+G_r(s)=\frac{1}{s^2 J_c(s)}.
+$$
+Laplace transforming
+$$
+J_c(t)=\frac{1}{1000}\left(10 - 5 e^{-t/4} - 3e^{-t/8}\right)
+\ \Longrightarrow\
+J_c(s)=\frac{1}{100}\frac{1}{s}-\frac{1}{200}\frac{1}{s+\tfrac{1}{4}}-\frac{3}{1000}\frac{1}{s+\tfrac{1}{8}}.
+$$
+Algebra gives
+$$
+J_c(s)=\frac{32s^2+38s+5}{500\,s\,(32s^2+12s+1)},\qquad
+G_r(s)=\frac{500(32s^2+12s+1)}{s\,(32s^2+38s+5)}.
+$$
+In time domain,
+$$
+G_r(t)=100\;+\;A\,e^{s_1 t}\;+\;B\,e^{s_2 t},
+$$
+where
+$$
+s_{1,2}=\frac{-19\pm\sqrt{201}}{32}
+\ \Rightarrow\
+\tau_{r1}=\frac{1}{|s_1|}\approx 0.9645~{\rm s},\quad
+\tau_{r2}=\frac{1}{|s_2|}\approx 6.634~{\rm s},
+$$
+and
+$$
+A=200+\frac{900}{67}\sqrt{201}\approx 390.44,\qquad
+B=200-\frac{900}{67}\sqrt{201}\approx 9.56.
+$$
+Thus a single Prony form:
+$$
+G_r(t)=100\;+\;390.44\,e^{-t/0.9645}\;+\;9.56\,e^{-t/6.634}\quad[{\rm Pa}].
+$$
+\emph{Comparison:} the \emph{relaxation} times $$\tau_{r1}\approx 0.9645~{\rm s},\ \ \tau_{r2}\approx 6.634~{\rm s}$$ 
+differ from the creep times 4 and 8 s; this is expected because $J_c$ and $G_r$ are convolution inverses rather than sharing identical time constants.
 
 \bigskip
 \bigskip
@@ -29,11 +76,49 @@ In class, we derived the relaxation and creep compliance functions $G_r(t)$ and 
 In this question, we'll investigate a variant arrangement for the SLS, where a spring is placed in series with a Kelvin-Voigt solid. 
 
 (a) Determine the differential constitutive law for the variant SLS. 
-
+$$
+\sigma=\sigma_s=\sigma_{kv},\qquad \varepsilon=\varepsilon_s+\varepsilon_{kv}.
+$$
+Elements:
+$$
+\sigma=E_s\,\varepsilon_s,\qquad \sigma=E_k\,\varepsilon_{kv}+\eta_k\,\dot\varepsilon_{kv}.
+$$
+Eliminate strains using
+$$\varepsilon=\sigma/E_s+\varepsilon_{kv}$$ differentiate, and rearrange to obtain
+$$
+\ \dot\sigma+\frac{E_s+E_k}{\eta_k}\,\sigma
+= E_s\,\dot\varepsilon+\frac{E_sE_k}{\eta_k}\,\varepsilon.\
+$$
 (b) Then, the creep compliance function $J_c(t)$ and hence, the relaxation function $G_r(t)$.
 
+Compliances add in series. KV creep:
+$$
+J_{kv}(t)=\frac{1}{E_k}\Big(1-e^{-t/\tau_c}\Big),\qquad \tau_c=\frac{\eta_k}{E_k}.
+$$
+Therefore
+$$
+\ J_c(t)=\frac{1}{E_s}+\frac{1}{E_k}\Big(1-e^{-t/\tau_c}\Big)
+=\Big(\frac{1}{E_s}+\frac{1}{E_k}\Big)-\frac{1}{E_k}e^{-t/\tau_c}\ .
+$$
+Using $\big[sJ_c(s)\big]\big[sG_r(s)\big]=1$, one finds
+$$
+\ G_r(t)=G_\infty + (G_0-G_\infty)\,e^{-t/\tau_r},\quad
+G_0=E_s,\ \ G_\infty=\frac{E_sE_k}{E_s+E_k},\ \ \tau_r=\frac{\eta_k}{E_s+E_k}.\
+$$
 (c) How do the coefficients in the two variants of the standard solid model relate to each other?
 
+$$
+E_s=E_p+E_m,\quad
+E_k=\frac{E_pE_s}{E_m},\quad
+\eta_k=\frac{(E_p+E_m)^2}{E_m^2}\,\eta_m\;
+$$
+and the inverse
+$$
+\
+E_m=\frac{E_s^2}{E_s+E_k},\quad
+E_p=\frac{E_sE_k}{E_s+E_k},\quad
+\eta_m=\frac{E_s^2}{(E_s+E_k)^2}\,\eta_k\ .
+$$
 \bigskip
 \bigskip
 \bigskip
@@ -42,7 +127,35 @@ You have a five-parameter fit $G_r(t) = C_r (200 e^{-2t} + 100 e^{-t} + 10)$ tha
 
 (a) Draw the equivalent mechanical analog model for this fit.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{fig_PS3_analog.png}
+\caption{\small Mechanical analog model.}
+\end{figure}
+
 (b) Determine the functional forms for the storage and loss moduli, and create a semi-log plot of the loss tangent $(\tan\delta)$ over a domain of relevant frequency orders $(\log \omega)$. 
+
+For a generalized Maxwell model,
+$$
+G'(\omega)=E_\infty+\sum_k\frac{E_k(\omega\tau_k)^2}{1+(\omega\tau_k)^2},\qquad
+G''(\omega)=\sum_k\frac{E_k(\omega\tau_k)}{1+(\omega\tau_k)^2}.
+$$
+Hence
+$$
+G'(\omega)=10C_r+200C_r\,\frac{(\omega/2)^2}{1+(\omega/2)^2}
++100C_r\,\frac{\omega^2}{1+\omega^2},
+$$
+$$
+G''(\omega)=100C_r\,\frac{\omega}{1+(\omega/2)^2}
++100C_r\,\frac{\omega}{1+\omega^2},\qquad
+\tan\delta(\omega)=\frac{G''(\omega)}{G'(\omega)}.
+$$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{fig_PS3_tandelta.png}
+\caption{\small Semi-log plot of loss tangent $\tan\delta(\omega)$ vs. $\omega$ for the given Prony fit.}
+\end{figure}
 
 \newpage
 \subsection*{3--4. \textbf{Fractional response} [4 pts].}
@@ -61,13 +174,69 @@ As a suggestion, you could consider values spaced symmetrically around zero on t
 Picking e.g., logit($\alpha$)$=0$ corresponds to $\alpha =0.5$, $\textrm{logit}(\alpha) =  1$ is $\alpha\approx0.73$, etc. 
 I suggest sampling integers on a range of logit($\alpha$) $= -4 \textrm{~to~} 4$ to cover the full range from elastic to viscous response for the springpot.
 
+\paragraph{(a) Step strain}
+For $\varepsilon(t)=\varepsilon_0\mathcal{H}(t)$, the stress response is
+$$
+\sigma(t,\alpha)=\varepsilon_0\,G_r(t).
+$$
+A representative plot is shown below.
+
+\paragraph{(b) Finite step stress of length $t=5$}
+We solve
+$$
+E\,\varepsilon(t)+\eta_\alpha\,{}^{C}D_t^\alpha \varepsilon(t)=\sigma_0\,[\mathcal{H}(t)-\mathcal{H}(t-5)]
+$$
+
+\paragraph{(c) Another stress: half-sine pulse on $0\le t\le 10$.}
+We solve the same fractional KV equation with
+$$
+\sigma(t)=\sigma_0\sin\!\Big(\frac{\pi t}{10}\Big)\, \mathcal{H}(t)\,\mathcal{H}(10-t).
+$$
+
+\begin{figure}[H]
+\centering
+\subfigure[\small Stress responses $\sigma(t,\alpha)$ for step strain $\epsilon=\epsilon_0 \mathcal{H}(t)$.]{
+  \includegraphics[width=0.85\textwidth]{fig_PS3_frac_stepstrain_sigma.png}
+}
+\quad
+\subfigure[\small Applied strain history (constant step).]{
+  \includegraphics[width=0.85\textwidth]{fig_PS3_frac_stepstrain_eps.png}
+}
+\caption{\small Fractional Kelvin--Voigt: step strain responses for multiple $\alpha$.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfigure[\small Strain responses $\epsilon(t,\alpha)$ for finite step stress ($0\le t<5$ s).]{
+  \includegraphics[width=0.85\textwidth]{fig_PS3_frac_stepstress_eps.png}
+}
+\quad
+\subfigure[\small Applied stress $\sigma(t)$ used for part (b).]{
+  \includegraphics[width=0.85\textwidth]{fig_PS3_frac_stepstress_sigma.png}
+}
+\caption{\small Fractional Kelvin--Voigt: finite step stress of length $5$ s.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfigure[\small Strain responses $\epsilon(t,\alpha)$ for half-sine stress on $0\le t\le 10$ s.]{
+  \includegraphics[width=0.85\textwidth]{fig_PS3_frac_halfsine_eps.png}
+}
+\quad
+\subfigure[\small Applied half-sine stress $\sigma(t)$ used for part (c).]{
+  \includegraphics[width=0.85\textwidth]{fig_PS3_frac_halfsine_sigma.png}
+}
+\caption{\small Fractional Kelvin--Voigt: half-sine stress case.}
+\end{figure}
+
+
 \bigskip
 \bigskip
 \subsection*{3--5. \textbf{Rheology without a rheometer} [8 pts].}
 
 You have a rubbery material of density $\rho$ for which you plan to characterize frequency-dependent viscoelastic behavior. 
 The material you have can be made into a sphere of a wide range of sizes, from a radius of $R=1$ mm to $R=1$ m. 
-You plan to drop each ball onto a rigid half-space from a height $h_0$, and can measure the rebound height $h(R)$ for each ball radius $R$. 
+You plan to drop each ball onto a rigid half-space from a height $h_0$, and can measure the height $h(R)$ for each ball radius $R$. 
 
 The impact duration for an elastic material is given by a Hertzian contact relation of
 \begin{equation*}
@@ -77,10 +246,53 @@ where $c = 1000$ m/s represents the pressure wave speed in the material and the 
 
 (a) How much energy per volume is dissipated by the material for each size of ball? 
 
+With drop height $h_0$ and rebound height $h(R)$, the dissipated energy per unit volume is
+$$
+\Delta w(R)=\rho g\,\big[h_0-h(R)\big]. 
+$$
+
 (b) Using the Lissajous plot of $\sigma/|E^*|$ vs. $\varepsilon$, show that the approximate peak elastic energy stored in the ball during a half-cycle is $\frac{1}{2} B^2 \cos \delta$, where $B = \varepsilon_{\textrm{max}}$. 
+
+Normalize the stress by $|E^*|$ and plot $\sigma/E,\varepsilon$.
+For sinusoidal steady response $\varepsilon=B\sin\omega t$ and $\sigma=|E^*|\,B\sin(\omega t+\delta)$, the peak elastic energy density in a half-cycle is
+$$
+w_{\rm el,peak}\approx \frac{1}{2}\,B^2\cos\delta\ \times |E^*|.
+$$
 
 (c) Determine an approximate expression for the energy dissipated by the ball during a drop event in terms of $A = \varepsilon_{\textrm{max}} \sin \delta$ and $B$. 
 
+The Lissajous ellipse area per full cycle is $\pi |E^*| AB$, where $A=B\sin\delta$.
+A single impact spans roughly a half-cycle, so
+$$
+\ \Delta w_{\rm half}\approx \frac{\pi}{2}\,|E^*|\,A\,B
+= \frac{\pi}{2}\,|E^*|\,AB.\
+$$
+
 (d) Hence, determine $\tan\delta$ as a function of the rebound height, $h(R)$. 
 
+Using the ratio of dissipated to peak elastic energy in a half-cycle,
+$$
+\frac{\Delta w_{\rm half}}{w_{\rm el,peak}}\ \approx\ \pi\,\tan\delta.
+$$
+Assuming the total dissipated energy in the drop equals the gravitational loss per volume,
+$$
+\Delta w(R)=\rho g\,[h_0-h(R)]\ \approx\ 2\,\Delta w_{\rm half},
+$$
+Assuming the peak elastic energy reflect the potential energy at the maximum height,
+$$
+w_{\rm el,peak} =\rho g\,h(R),
+$$
+so
+$$
+\tan\delta \ \approx\ \frac{1}{\pi}\,\frac{\Delta w_{\rm half}}{w_{\rm el,peak}}
+\ \approx\ \frac{1}{2\pi}\,\frac{\,[h_0-h(R)]}{h(R)}.
+$$
+
 (e) For what frequencies could you say this material is calibrated?
+
+With $R\in[1~{\rm mm},\,1~{\rm m}]$,
+$$
+t_c\in[2.5\times 10^{-5},\ 2.5\times 10^{-2}]~{\rm s},\qquad
+f_c\sim \frac{1}{2t_c}\in[20,\ 2\times 10^{4}]~{\rm Hz}.
+$$
+Thus the drop tests effectively probe $\sim 20~{\rm Hz}$ to $20~{\rm kHz}$ across the available radii.
