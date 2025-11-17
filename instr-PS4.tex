@@ -8,7 +8,7 @@ This set of example problems is due on November 17, 2025.
 
 \medskip
 \subsection*{4--1. \textbf{Characterization with deflection history} [4 pts].} 
-A simply supported beam is made from a material that is well-described by a three-parameter standard linear solid model, i.e., the general creep compliance function $J_c(t)$ is given by
+A simply supported beam \textcolor{red}{with a uniform applied load (or you could instead use a point end load on a cantilevered beam as I mentioned on Slack, either is completely fine)} is made from a material that is well-described by a three-parameter standard linear solid model, i.e., the general creep compliance function $J_c(t)$ is given by
 \begin{equation*}
     J_c(t) = J_\infty + (J_0 - J_\infty) \exp\left[-\frac{t}{\tau_c}\right],
 \end{equation*}
@@ -43,7 +43,7 @@ What is the angular rotation of the end $B$ as a function of time, $\Phi(t)$?
 \end{wrapfigure}
 A one-piece polymeric member \textit{ABC} consists of two segments of length $L$ at a right angle from one-another and encastred at $A$, as shown. 
 Its neutral axes both lie in the $x-z$ plane when unloaded. 
-Assuming the creep compliance in shear to be $\mu_c{t}$ and the creep compliance in axial tension to be $E_c(t)$, determine (a) the deflection at $C$ in terms of the time-varying force $F(t)$ and (b) the stress tensor $\mathbf{\sigma}(t)$ at the square surface element located above $A$.  
+Assuming the creep compliance in shear to be $\mu_c(t)$ and the creep compliance in axial tension to be $E_c(t)$, determine (a) the deflection at $C$ in terms of the time-varying force $F(t)$ and (b) the stress tensor $\mathbf{\sigma}(t)$ at the square surface element located above $A$.  
 
 \newpage
 \subsection*{4--4. \textbf{Fibrous material} [4 pts].}
@@ -69,7 +69,7 @@ where $I_1(\bn{C}) = \textrm{tr}(\bn{C})$ and $I_a(\bn{C},\hat{\bm{a}}_0) = \hat
 \bigskip
 \bigskip
 \subsection*{4--5. \textbf{Gent model of rubber elasticity} [4 pts].}
-The Gent model, which incorporates the finite extensibility of polymer chains in a rubber network but includes $I_2$-dependence, has a free-energy function of $$\bar{\Psi} = -\frac{C_{10}}{2} J_m \ln \left(1 - \frac{I_1-3}{J_m} \right) + C_{01}\ln \left(\frac{I_2}{3}\right), $$ where $C_{10}>0$, $C_{01}\geq 0$, and $J_m>0$ are material constants.
+The Gent model, which incorporates the finite extensibility of polymer chains in a rubber network but includes $I_2$-dependence, has a\textcolor{red}{n isochoric} free-energy function of $$\bar{\Psi}_{\textcolor{red}{\textrm{iso}}} = -\frac{C_{10}}{2} J_m \ln \left(1 - \frac{I_1-3}{J_m} \right) + C_{01}\ln \left(\frac{I_2}{3}\right), $$ where $C_{10}>0$, $C_{01}\geq 0$, and $J_m>0$ are material constants.
 
 \medskip
 (a) Show that the Cauchy stress corresponding to the free energy above has the form $$\bm{\sigma} = -p \bn{I} + \frac{C_{10} J_m}{J_m - (I_1-3)}\bn{B} - \frac{2C_{01}}{I_2} \bn{B}^{-1}.$$
