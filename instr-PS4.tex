@@ -72,7 +72,7 @@ where $I_1(\bn{C}) = \textrm{tr}(\bn{C})$ and $I_a(\bn{C},\hat{\bm{a}}_0) = \hat
 The Gent model, which incorporates the finite extensibility of polymer chains in a rubber network but includes $I_2$-dependence, has a\textcolor{red}{n isochoric} free-energy function of $$\bar{\Psi}_{\textcolor{red}{\textrm{iso}}} = -\frac{C_{10}}{2} J_m \ln \left(1 - \frac{I_1-3}{J_m} \right) + C_{01}\ln \left(\frac{I_2}{3}\right), $$ where $C_{10}>0$, $C_{01}\geq 0$, and $J_m>0$ are material constants.
 
 \medskip
-(a) Show that the Cauchy stress corresponding to the free energy above has the form $$\bm{\sigma} = -p \bn{I} + \frac{C_{10} J_m}{J_m - (I_1-3)}\bn{B} - \frac{2C_{01}}{I_2} \bn{B}^{-1}.$$
+(a) Show that the Cauchy stress corresponding to the free energy above has the form\footnote{\textcolor{red}{You may want to use the Cayley-Hamilton theorem to do a replacement for $\bn{B}^2$, which produces $\bn{B}^2 = I_1 \bn{B} - I_2 \bn{I} + I_3 \bn{B}^{-1}$.}} $$\bm{\sigma} = -p \bn{I} + \frac{C_{10} J_m}{J_m - (I_1-3)}\bn{B} - \frac{2C_{01}}{I_2} \bn{B}^{-1}.$$
 
 \medskip
 (b) This material undergoes a simple shear deformation of magnitude $\gamma$. Given that the shear modulus $\mu(\gamma^2) \equiv \beta_1(\gamma^2) - \beta_{-1} (\gamma^2)$ where $\beta_i$ corresponds to the expression for $\bm{\sigma}$ in Q1, show that in the small strain limit that $$\lim\limits_{\gamma \rightarrow 0} \mu(\gamma^2) = C_{10} + \frac{2}{3} C_{01}.$$
